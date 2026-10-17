@@ -1,6 +1,6 @@
 import { assertEquals, assertExists } from "@std/assert";
 import { getInstitutions } from "./transaction.ts";
-import type { Transaction } from "@app/open-banking/types";
+import type { Transaction } from "@app/bank-statement/types";
 
 Deno.test("getInstitutions sorts accounts by accountNumber", () => {
   const transactions: Transaction[] = [

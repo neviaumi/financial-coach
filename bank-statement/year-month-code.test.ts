@@ -4,14 +4,14 @@ import {
 } from "./year-month-code.ts";
 import { assertEquals, assertThrows } from "@std/assert";
 
-[["2025M01", "2025-01-01"]].forEach(([input, output]) => {
+[["2025-01", "2025-01-01"]].forEach(([input, output]) => {
   Deno.test(`Date from year month code - ${input}`, () => {
-    const date = dateFromYearMonthCode("2025M01");
+    const date = dateFromYearMonthCode(input);
     assertEquals(date.toString(), output);
   });
 });
 
-["foo-bar"].forEach((input) => {
+["foo-bar", "2025M01"].forEach((input) => {
   Deno.test(`Error: Date from year month code - ${input}`, () => {
     assertThrows(
       () => dateFromYearMonthCode(input),

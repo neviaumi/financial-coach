@@ -55,14 +55,15 @@ export async function saveTransactionsAsMonthlyStatement(
   yearMonthCode: YearMonthCode,
   statement: Statement,
 ) {
-  await Deno.mkdir(filePathRelativeToCacheDir("statements"), {
+  await Deno.mkdir(filePathRelativeToCacheDir("statements/Consolidated"), {
     recursive: true,
   });
   await Deno.open(
-    filePathRelativeToCacheDir(`statements/${yearMonthCode}.json`),
+    filePathRelativeToCacheDir(`statements/Consolidated/${yearMonthCode}.json`),
     {
       write: true,
       create: true,
+      truncate: true,
     },
   ).then((file) => {
     const encoder = new TextEncoder();
@@ -78,7 +79,7 @@ export function getMonthlyStatement(
   yearMonthCode: YearMonthCode,
 ): Promise<Statement> {
   return Deno.open(
-    filePathRelativeToCacheDir(`statements/${yearMonthCode}.json`),
+    filePathRelativeToCacheDir(`statements/Consolidated/${yearMonthCode}.json`),
     {
       read: true,
     },

@@ -8,9 +8,9 @@ both CLI logs and web-based UI rendering (using `unsafeHTML`).
 
 Think step-by-step to execute this headless task:
 
-1. **Initialize Definitions:** Reference `@open-banking/types.ts` (Statement
-   type) and `@open-banking/mcc.ts`.
-2. **Data Ingestion:** Read the target file (e.g., `2015M12.json`). Read the
+1. **Initialize Definitions:** Reference `@bank-statement/types.ts` (Statement
+   type) and `@bank-statement/mcc.ts`.
+2. **Data Ingestion:** Read the target file (e.g., `2026-09.json` in `.cache/statements/Consolidated/`). Read the
    previous month's file to calculate balance continuity.
 3. **Analysis & Logic:** Categorize transactions via MCC and generate the
    `aiReview` payload.

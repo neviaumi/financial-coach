@@ -6,7 +6,7 @@ import { statement } from "@/signals.ts";
 import { prefixedElementName } from "@/prefixed-element-name.ts";
 import { createColumnHelper, getValueFromInfo } from "@/data-table.ts";
 import type { Statement } from "@app/bank-statement/types";
-import { parseMccCodeToLabel } from "@app/open-banking/mcc";
+import { parseMccCodeToLabel } from "@app/bank-statement/mcc";
 import { withWAStyles } from "@/wa-styles.ts";
 
 import "@wa/components/format-date/format-date.js";

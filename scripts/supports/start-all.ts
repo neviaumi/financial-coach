@@ -35,29 +35,22 @@ async function pipeStream(
   }
 }
 
-const serverCommand = new Deno.Command("deno", {
-  args: ["task", "-f", "@app/server", "start"],
+const serverCommand = new Deno.Command("./scripts/start.sh", {
+  cwd: "./server",
   stdout: "piped",
   stderr: "piped",
 });
 
-const apiBaseUrl = Deno.env.get("VITE_API_BASE_URL") ?? "http://localhost:8084";
-const clientCommand = new Deno.Command("deno", {
-  args: ["task", "-f", "@app/web-client", "start"],
-  env: {
-    ...Deno.env.toObject(),
-    VITE_API_BASE_URL: apiBaseUrl,
-  },
+const clientCommand = new Deno.Command("./scripts/start.sh", {
+  cwd: "./web-client",
   stdout: "piped",
   stderr: "piped",
 });
 
-console.log(`${serverPrefix} Starting server task...`);
+console.log(`${serverPrefix} Starting server...`);
 const serverChild = serverCommand.spawn();
 
-console.log(
-  `${clientPrefix} Starting web-client task with VITE_API_BASE_URL=${apiBaseUrl}...`,
-);
+console.log(`${clientPrefix} Starting web-client...`);
 const clientChild = clientCommand.spawn();
 
 let exiting = false;

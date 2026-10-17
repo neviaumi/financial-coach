@@ -1,140 +1,82 @@
 # Financial Coach
 
-A personal finance ecosystem combining a CLI for data synchronization, a
-Deno-based Server (supporting the Model Context Protocol), and a modern Web
-Client dashboard.
+A personal finance platform combining automated Google Drive bank statement ingestion, a Deno + Hono REST API server, and a Vite + Lit Web Client dashboard deployed behind Traefik.
 
 ## Overview
 
-Financial Coach is designed to help you track your finances by synchronizing
-bank transactions via Open Banking (GoCardless) and presenting them in a unified
-dashboard. Beyond a standard UI, it exposes an **MCP (Model Context Protocol)**
-server, allowing AI assistants (like Claude) to securely access and analyze your
-financial data to provide personalized coaching.
+Financial Coach helps you track your monthly expenses and balances by consolidating PDF bank statements from Google Drive (`expense/Statements/[Bank Name]/`) into a unified monthly statement (`YYYY-MM.json` and `YYYY-MM.pdf`) complete with AI financial coaching insights.
 
 ## Architecture
 
-The project consists of three main components that interact with a shared data
-layer:
+The project is organized as a Deno workspace deployed as two Docker Compose containers behind the shared Traefik reverse proxy (`https://finance.home.handy-david.dev`):
 
 ```mermaid
 graph TD
-    CLI[CLI Tool] -- Syncs Data --> Cache[(.cache/statements)]
-    Server[Deno Server] -- Reads --> Cache
-    Server -- Exposes --> MCP[MCP Protocol]
-    Server -- Exposes --> API[REST API]
-    Web[Web Client] -- Fetches Data --> API
-    Web -- User Interface --> Browser
+    GDrive["Google Drive (expense/Statements)"] -- "Daily Sync (/gdrive)" --> Cache[(".cache/statements")]
+    Cache -- "Monthly Consolidation (15th)" --> Consolidated[(".cache/statements/Consolidated/YYYY-MM.json")]
+    Consolidated -- "Uploaded via /gdrive" --> GDriveConsolidated["Google Drive (Statements/Consolidated)"]
+    Traefik["Traefik Reverse Proxy (finance.home.handy-david.dev)"] -- "PathPrefix(/api)" --> Server["financial-coach-server (:8084)"]
+    Traefik -- "/*" --> Web["financial-coach-client (:8081)"]
+    Server -- "Reads" --> Consolidated
 ```
 
-1. **CLI (`/cli`)**: Connects to Open Banking providers to fetch transactions
-   and balances, normalizing them into monthly JSON statements stored in
-   `.cache/`.
-2. **Server (`/server`)**: A Deno + Hono server that:
-   - Serves the JSON/CSV statements via a REST API.
-   - Hosts the MCP endpoint for AI integration.
-3. **Web Client (`/web-client`)**: A Vite + Lit application that visualizes the
-   monthly statements.
+1. **Server (`/server`)**: A Deno + Hono server that serves consolidated monthly statements in JSON and CSV formats under `/api/statements/`.
+2. **Web Client (`/web-client`)**: A Vite + Lit + WebAwesome single-page application that visualizes monthly statements, category breakdowns, and AI review commentary.
+3. **Bank Statement Library (`/bank-statement`)**: Shared domain types, ISO `YYYY-MM` year-month utilities, MCC categorization, and statement storage helpers.
+4. **Scheduled Automations (`.gemini/config/plugins/financial-coach/sidecars/`)**:
+   - **Daily Download**: Syncs PDF bank statements from Google Drive `expense/Statements/[Bank Name]/` into `.cache/statements/[Bank Name]/`.
+   - **Monthly Consolidation**: Runs on the 15th of each month to parse the previous month's PDF statements into `.cache/statements/Consolidated/YYYY-MM.json` and `YYYY-MM.pdf` and upload them back to Google Drive.
 
 ## Getting Started
 
 ### Prerequisites
 
-- **Deno**: Ensure Deno is installed (v2.0+ recommended).
-- **Google Cloud CLI (`gcloud`)**: Required by `./scripts/sync.sh` to retrieve
-  GoCardless credentials (`gocardless-secret-id` and `gocardless-secret-key`)
-  from GCP Secret Manager.
-- **Cloudflare CLI (`cloudflared`)**: Required by `./scripts/sync.sh` to create
-  a temporary HTTPS tunnel for Open Banking OAuth redirect callbacks.
-- **Antigravity CLI (`agy`)**: Required during sync to run automated AI
-  financial analysis on synchronized statements.
-- **rclone**: Required for Google Drive backups. Ensure you have a remote named
-  `gdrive` configured.
-- **GoCardless Account**: Required to access Open Banking APIs.
+- **Docker & Docker Compose**: For running the containerized services on `proxy-network`.
+- **Traefik Reverse Proxy**: Running from `../reverse-proxy` on the external `proxy-network` network.
+- **Deno** (v2.0+): For local development, unit testing, and linting.
 
-### Configuration
+### Storage Layout
 
-The CLI and Server rely on environment variables, which are automatically
-fetched or configured during operation:
+All statements are stored locally under `financial-coach/.cache/statements/` (mounted into `financial-coach-server` at `/app/.cache/statements/`):
 
-| Variable                       | Description                                 | Example / Default                                          |
-| :----------------------------- | :------------------------------------------ | :--------------------------------------------------------- |
-| `APP_ENV`                      | Environment mode (`DEV` or `PROD`).         | `DEV`                                                      |
-| `GO_CARD_LESS_SECRET_ID`       | GoCardless Secret ID.                       | Auto-fetched from GCP Secret Manager via `gcloud`          |
-| `GO_CARD_LESS_SECRET_KEY`      | GoCardless Secret Key.                      | Auto-fetched from GCP Secret Manager via `gcloud`          |
-| `APP_OPENBANKING_REDIRECT_URL` | Redirect URL for Open Banking callbacks.    | Auto-generated HTTPS URL via `cloudflared` tunnel in `DEV` |
-| `VITE_API_BASE_URL`            | Base API host for the Web Client dashboard. | Defaults to `http://localhost:8084`                        |
+```text
+financial-coach/.cache/statements/
+├── AMEX/
+│   └── *.pdf
+├── Barclays/
+│   └── *.pdf
+├── Chase/
+│   └── *.pdf
+├── HSBC/
+│   └── *.pdf
+└── Consolidated/
+    ├── YYYY-MM.json
+    └── YYYY-MM.pdf
+```
 
-### Installation
+### Running with Docker Compose (Production)
 
-No explicit install step is needed beyond having Deno and the required CLI tools
-(`gcloud`, `cloudflared`, `agy`, `rclone`). Project dependencies are managed via
-`deno.json` workspaces.
+Start both `financial-coach-server` and `financial-coach-client` behind Traefik:
 
-### Quick Start
+```bash
+docker compose up -d --build
+```
 
-1. **Sync Data**: Fetch your latest bank data, analyze statements with AI, and
-   back up to Google Drive.
-   ```bash
-   # Sync for a specific month (Format: YYYYMmm)
-   bash ./scripts/sync.sh 2026M01
-   ```
-   _Note: Ensure `gcloud` is logged in and `cloudflared` is installed before
-   running sync._
+- **Dashboard UI**: `https://finance.home.handy-david.dev/statements/2026-02`
+- **Statement JSON API**: `https://finance.home.handy-david.dev/api/statements/2026-02.json`
+- **Statement CSV API**: `https://finance.home.handy-david.dev/api/statements/2026-02.csv`
 
-2. **Start the System**: Launch both the Server and Web Client simultaneously
-   using the unified orchestrator script.
-   ```bash
-   bash ./scripts/start.sh
-   ```
-   - **Server**: Runs on `http://localhost:8084`
-   - **Web Client**: Runs on Vite dev server (configured with
-     `VITE_API_BASE_URL`)
-   - **CLI (Open Banking Callback)**: Binds to port `8083` (tunneled dynamically
-     via `cloudflared`)
+### Running Locally (Development)
 
-## Component Details
+Launch both the Server (`:8084`) and Web Client (`:8080`, with `/api` proxied to `http://localhost:8084`):
 
-### CLI (`/cli`)
+```bash
+bash ./scripts/start.sh
+```
 
-The CLI is the entry point for data ingestion. It handles the complexity of
-OAuth flows and token management with Open Banking providers.
+## Development & Testing
 
-- **Prerequisites**: `gcloud` (fetches secrets), `cloudflared` (creates OAuth
-  callback tunnel), `agy` (runs AI analysis), and `rclone` (Google Drive
-  backup).
-- **Key Command**: `./scripts/sync.sh [YearMonthCode]`
-- **Port**: `8083` (Used as the temporary callback port for Open Banking OAuth,
-  exposed via `cloudflared`)
-- **Output**: Saves standardized JSON statements to `.cache/statements/` and
-  copies them to Google Drive (`gdrive:` remote).
-
-### Server (`/server`)
-
-The backend engine powered by **Hono** on Deno.
-
-- **Port**: `8084`
-- **Endpoints**:
-  - `/mcp`: Model Context Protocol entry point.
-  - `/statements/:yearMonthCode.json`: Get raw statement data.
-  - `/statements/:yearMonthCode.csv`: Download statement as CSV.
-- **MCP Integration**: Point your AI assistant (e.g., Claude Desktop,
-  Antigravity) to this server to analyze transaction data.
-
-### Web Client (`/web-client`)
-
-A reactive frontend built with **Vite**, **Lit**, and **WebAwesome**.
-
-- **Features**:
-  - Monthly statement visualization.
-  - Transaction categorization and financial insights.
-  - Responsive data tables.
-- **Runner**: Started concurrently alongside the server via
-  `bash ./scripts/start.sh` (or `deno task -f @app/web-client start`).
-
-## Contributing
-
-1. **Workspace**: This is a Deno workspace. Run tests across all modules:
+1. **Run Unit Tests**:
    ```bash
    deno test
    ```

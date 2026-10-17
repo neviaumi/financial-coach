@@ -4,7 +4,8 @@
     ".": "./bank-statements.ts",
     "./year-month-code": "./year-month-code.ts",
     "./date": "./date.ts",
-    "./types": "./types.ts"
+    "./types": "./types.ts",
+    "./mcc": "./mcc.ts"
   },
   "imports": {
     "@std/assert": "jsr:@std/assert@1",

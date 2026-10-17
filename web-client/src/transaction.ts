@@ -1,4 +1,4 @@
-import type { Institution, Transaction } from "@app/open-banking/types";
+import type { Institution, Transaction } from "@app/bank-statement/types";
 
 type InstitutionInfo = Omit<Institution, "id">;
 export function getInstitutions(

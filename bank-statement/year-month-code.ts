@@ -11,15 +11,15 @@ type MonthCode =
   | "10"
   | "11"
   | "12";
-export type YearMonthCode = `${number}M${MonthCode}`;
+export type YearMonthCode = `${number}-${MonthCode}`;
 export function isYearMonthCode(value: string): value is YearMonthCode {
-  // Use a Regex to check for exactly 4 digits, an M, and 2 digits
-  return /^\d{4}M(0[1-9]|1[0-2])$/.test(value);
+  // Use a Regex to check for exactly 4 digits, a hyphen, and 2 digits
+  return /^\d{4}-(0[1-9]|1[0-2])$/.test(value);
 }
 export class InvalidYearMonthCodeError extends Error {
   constructor(value: string) {
     super(
-      `Invalid YearMonthCode: ${value}, expected format YYYYMMM, for example: 2023M01`,
+      `Invalid YearMonthCode: ${value}, expected format YYYY-MM, for example: 2023-01`,
     );
     this.name = "InvalidYearMonthCodeError";
   }
@@ -31,7 +31,7 @@ export function toYearMonthCode(
   if (!date) throw new InvalidYearMonthCodeError(`yearMonthCode is empty`);
   const yearMonthCode: string = typeof date === "string"
     ? date
-    : `${date.year}${date.monthCode}`;
+    : `${date.year}-${String(date.month).padStart(2, "0")}`;
   if (isYearMonthCode(yearMonthCode)) {
     return yearMonthCode;
   } else throw new InvalidYearMonthCodeError(yearMonthCode);
@@ -46,6 +46,6 @@ export function dateFromYearMonthCode(
   if (!isYearMonthCode(yearMonthCode)) {
     throw new InvalidYearMonthCodeError(yearMonthCode);
   }
-  const [year, month] = yearMonthCode.split("M");
+  const [year, month] = yearMonthCode.split("-");
   return new Temporal.PlainDate(parseInt(year), parseInt(month, 10), 1);
 }

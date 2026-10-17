@@ -1,0 +1,36 @@
+services:
+  financial-coach-server:
+    build:
+      context: .
+      dockerfile: server/Dockerfile
+    container_name: financial-coach-server
+    restart: unless-stopped
+    volumes:
+      - ./.cache:/app/.cache
+    networks:
+      - proxy-network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.finance-api.rule=Host(`finance.home.handy-david.dev`) && PathPrefix(`/api`)"
+      - "traefik.http.routers.finance-api.entrypoints=websecure"
+      - "traefik.http.routers.finance-api.tls=true"
+      - "traefik.http.services.finance-api.loadbalancer.server.port=8084"
+
+  financial-coach-client:
+    build:
+      context: .
+      dockerfile: web-client/Dockerfile
+    container_name: financial-coach-client
+    restart: unless-stopped
+    networks:
+      - proxy-network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.finance-client.rule=Host(`finance.home.handy-david.dev`)"
+      - "traefik.http.routers.finance-client.entrypoints=websecure"
+      - "traefik.http.routers.finance-client.tls=true"
+      - "traefik.http.services.finance-client.loadbalancer.server.port=8081"
+
+networks:
+  proxy-network:
+    external: true
