@@ -1,0 +1,18 @@
+{
+  "builtin": "schedule",
+  "args": [
+    "CRON_TZ=Europe/London 0 9 * * *",
+    "agentapi",
+    "new-conversation",
+    "--",
+    "From the financial-coach project root, sync and deduplicate raw bank statement PDFs from Google Drive 'gdrive:expense/Statements' into '.cache/statements/' (mounted as '/data/statements' inside the rclone container): (1) Run './scripts/rclone.sh dedupe --dedupe-mode newest gdrive:expense/Statements' to remove duplicate filenames on Google Drive while keeping the newest file. (2) Run './scripts/rclone.sh sync gdrive:expense/Statements /data/statements --exclude Consolidated/**' to mirror each bank folder (AMEX, Barclays, Chase, HSBC) into '.cache/statements/[Bank Name]/*.pdf' without touching '.cache/statements/Consolidated/'. Summarize the deduplication and sync results."
+  ],
+  "restart_policy": "always",
+  "display_name": "Financial Coach Daily Statement Sync",
+  "description": "Every day at 9:00 AM (Europe/London), deduplicates and syncs raw bank statement PDFs from Google Drive (gdrive:expense/Statements) into .cache/statements/[Bank Name]/ using ./scripts/rclone.sh.",
+  "agent_permissions": {
+    "access_grants": [
+      "command(./scripts/rclone.sh)"
+    ]
+  }
+}

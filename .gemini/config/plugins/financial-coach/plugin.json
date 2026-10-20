@@ -1,0 +1,6 @@
+{
+  "name": "financial-coach",
+  "displayName": "Financial Coach Automations",
+  "description": "Scheduled Google Drive bank statement synchronization, deduplication, and monthly post-payday statement consolidation for Financial Coach.",
+  "version": "1.0.0"
+}

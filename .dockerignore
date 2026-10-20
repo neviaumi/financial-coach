@@ -1,5 +1,6 @@
 .git
 .cache
+server/config/rclone.conf
 node_modules
 web-client/dist
 web-client/.vite

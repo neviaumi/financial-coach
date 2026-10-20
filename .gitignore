@@ -12,3 +12,5 @@
 
 # Local specifications
 /specs/
+/server/config/rclone.conf
+/.cache/

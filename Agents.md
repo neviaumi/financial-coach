@@ -39,3 +39,11 @@ This document defines the architectural conventions and workspace rules for AI a
         deno serve -P --port 8084 ./main.ts
     fi
     ```
+
+---
+
+## 4. Antigravity Plugin & Scheduled Automations
+
+This project bundles its Antigravity plugin and scheduled automations under `.gemini/config/plugins/financial-coach/`.
+
+For the complete guide on configuring `./scripts/rclone.sh`, installing or updating the plugin and sidecars (with dynamic `workspace_uris` injection), and enabling the automations in the Antigravity dashboard, see [`.gemini/config/plugins/Agents.md`](.gemini/config/plugins/Agents.md).

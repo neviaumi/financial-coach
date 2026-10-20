@@ -1,0 +1,1 @@
+# Keep server/config directory in git; rclone.conf is ignored.
