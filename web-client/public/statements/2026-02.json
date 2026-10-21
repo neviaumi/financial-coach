@@ -1,0 +1,142 @@
+{
+  "period": {
+    "start": "2026-02-01",
+    "end": "2026-02-28"
+  },
+  "balance": {
+    "referenceDate": "2026-02-28",
+    "amount": {
+      "amount": "2700.00",
+      "currency": "GBP"
+    }
+  },
+  "aiReview": {
+    "insightSummary": {
+      "plain": "Net cash flow for February 2026 was +£1,485.50 across HSBC, Chase, Barclays, and AMEX. Essential housing and groceries remained within target budgets while discretionary dining increased slightly.",
+      "html": "<p>Net cash flow for <strong>February 2026</strong> was <strong>+£1,485.50</strong> across HSBC, Chase, Barclays, and AMEX. Essential housing and groceries remained within target budgets while discretionary dining increased slightly.</p>"
+    },
+    "analysisRationale": [
+      {
+        "plain": "Primary salary inflow of £3,200.00 was credited on 1 Feb 2026 into HSBC Current Account.",
+        "html": "Primary salary inflow of <strong>£3,200.00</strong> was credited on 1 Feb 2026 into HSBC Current Account."
+      },
+      {
+        "plain": "Fixed housing cost (£1,200.00 rent via Barclays) accounted for 37.5% of monthly income.",
+        "html": "Fixed housing cost (<strong>£1,200.00</strong> rent via Barclays) accounted for <strong>37.5%</strong> of monthly income."
+      },
+      {
+        "plain": "AMEX and Chase discretionary spending totaled £514.50 across groceries, dining, and transport.",
+        "html": "AMEX and Chase discretionary spending totaled <strong>£514.50</strong> across groceries, dining, and transport."
+      }
+    ],
+    "actionPlan": [
+      {
+        "plain": "Transfer £1,000.00 of the February surplus into your high-yield savings pot before the 15th.",
+        "html": "Transfer <strong>£1,000.00</strong> of the February surplus into your high-yield savings pot before the 15th."
+      },
+      {
+        "plain": "Cap restaurant dining at £150.00 for March to maintain your 35% monthly savings rate target.",
+        "html": "Cap restaurant dining at <strong>£150.00</strong> for March to maintain your 35% monthly savings rate target."
+      }
+    ]
+  },
+  "transactions": [
+    {
+      "bookingDate": "2026-02-01",
+      "bookingDateTime": "2026-02-01T09:00:00Z",
+      "transactionAmount": {
+        "amount": "3200.00",
+        "currency": "GBP"
+      },
+      "creditorName": "Tech Corp UK Ltd",
+      "remittanceInformationUnstructured": "February Salary",
+      "internalTransactionId": "txn_2026_02_01",
+      "institution": {
+        "bankName": "HSBC",
+        "softCode": "40-05-15",
+        "accountNumber": "12345678",
+        "accountType": "Current"
+      },
+      "to": "February Salary",
+      "source": "HSBC/HSBC_2026-02_Statement.pdf"
+    },
+    {
+      "bookingDate": "2026-02-02",
+      "bookingDateTime": "2026-02-02T10:00:00Z",
+      "transactionAmount": {
+        "amount": "-1200.00",
+        "currency": "GBP"
+      },
+      "creditorName": "Prime Lettings",
+      "remittanceInformationUnstructured": "Rent February 2026",
+      "merchantCategoryCode": "6513",
+      "internalTransactionId": "txn_2026_02_02",
+      "institution": {
+        "bankName": "Barclays",
+        "softCode": "20-00-00",
+        "accountNumber": "23456789",
+        "accountType": "Personal"
+      },
+      "to": "Prime Lettings",
+      "source": "Barclays/Barclays_2026-02_Statement.pdf"
+    },
+    {
+      "bookingDate": "2026-02-06",
+      "bookingDateTime": "2026-02-06T14:20:00Z",
+      "transactionAmount": {
+        "amount": "-184.50",
+        "currency": "GBP"
+      },
+      "creditorName": "Waitrose & Partners",
+      "remittanceInformationUnstructured": "Weekly Groceries",
+      "merchantCategoryCode": "5411",
+      "internalTransactionId": "txn_2026_02_03",
+      "institution": {
+        "bankName": "AMEX",
+        "accountNumber": "3001",
+        "accountType": "Credit Card"
+      },
+      "to": "Waitrose & Partners",
+      "source": "AMEX/AMEX_2026-02_Statement.pdf"
+    },
+    {
+      "bookingDate": "2026-02-14",
+      "bookingDateTime": "2026-02-14T19:30:00Z",
+      "transactionAmount": {
+        "amount": "-180.00",
+        "currency": "GBP"
+      },
+      "creditorName": "Dishoom London",
+      "remittanceInformationUnstructured": "Valentine's Dinner",
+      "merchantCategoryCode": "5812",
+      "internalTransactionId": "txn_2026_02_04",
+      "institution": {
+        "bankName": "AMEX",
+        "accountNumber": "3001",
+        "accountType": "Credit Card"
+      },
+      "to": "Dishoom London",
+      "source": "AMEX/AMEX_2026-02_Statement.pdf"
+    },
+    {
+      "bookingDate": "2026-02-19",
+      "bookingDateTime": "2026-02-19T08:45:00Z",
+      "transactionAmount": {
+        "amount": "-150.00",
+        "currency": "GBP"
+      },
+      "creditorName": "Transport for London",
+      "remittanceInformationUnstructured": "Monthly Travel & Contactless",
+      "merchantCategoryCode": "4111",
+      "internalTransactionId": "txn_2026_02_05",
+      "institution": {
+        "bankName": "Chase",
+        "softCode": "60-84-56",
+        "accountNumber": "87654321",
+        "accountType": "Current"
+      },
+      "to": "Transport for London",
+      "source": "Chase/Chase_2026-02_Statement.pdf"
+    }
+  ]
+}

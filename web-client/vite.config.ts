@@ -6,11 +6,15 @@ export default defineConfig({
   server: {
     port: 8080,
     strictPort: true,
+    allowedHosts: ["finance.home.handy-david.dev"],
+    proxy: {
+      "/api": "http://localhost:8084",
+    },
   },
   preview: {
     port: 8081,
     strictPort: true,
-    allowedHosts: ["bank.home.pi"],
+    allowedHosts: ["finance.home.handy-david.dev"],
   },
   resolve: {
     alias: [

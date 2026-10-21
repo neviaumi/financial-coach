@@ -1,13 +1,37 @@
-import type {
-  Amount,
-  Transaction as OBTransaction,
-} from "@app/open-banking/types";
-
-export type Transaction = OBTransaction & {
-  to: string;
+export type Amount = {
+  amount: string;
+  currency: string;
 };
 
-type ReviewComment = {
+export type Balance = {
+  balanceAmount: Amount;
+  balanceType: string;
+  referenceDate: string;
+};
+
+export type Institution = {
+  bankName: string;
+  accountNumber: string;
+  accountType: string;
+  softCode?: string;
+};
+
+export type Transaction = {
+  bookingDate: string;
+  valueDate?: string;
+  bookingDateTime: string;
+  valueDateTime?: string;
+  transactionAmount: Amount;
+  creditorName?: string;
+  remittanceInformationUnstructured: string;
+  merchantCategoryCode?: string;
+  internalTransactionId: string;
+  institution: Institution;
+  source: string;
+  to?: string;
+};
+
+export type ReviewComment = {
   plain: string;
   html: string;
 };
@@ -26,5 +50,5 @@ export type Statement = {
     actionPlan: Array<ReviewComment>;
     analysisRationale: Array<ReviewComment>;
   };
-  transactions: Array<Transaction>;
+  transactions: Array<Transaction & { to: string }>;
 };

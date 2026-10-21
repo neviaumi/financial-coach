@@ -1,0 +1,133 @@
+{
+  "transactions": [
+    {
+      "bookingDate": "2025-12-01",
+      "transactionAmount": {
+        "amount": "23.55",
+        "currency": "GBP"
+      },
+      "internalTransactionId": "mock-uuid-9901",
+      "institution": {
+        "bankName": "BARCLAYS",
+        "softCode": "20-25-36",
+        "accountNumber": "43018717",
+        "accountType": "Saving"
+      },
+      "to": "INTEREST PAID GROSS",
+      "source": "BARCLAYS/BARCLAYS_2025-12_Statement.pdf"
+    },
+    {
+      "bookingDate": "2025-12-01",
+      "transactionAmount": {
+        "amount": "-2.00",
+        "currency": "GBP"
+      },
+      "creditorName": "SumUp *Vendor",
+      "merchantCategoryCode": "8398",
+      "internalTransactionId": "mock-uuid-9902",
+      "institution": {
+        "bankName": "BARCLAYS",
+        "accountNumber": "************7005",
+        "accountType": "CreditCard"
+      },
+      "to": "Sumup A/C *Local Charity",
+      "source": "BARCLAYS/BARCLAYS_2025-12_Statement.pdf"
+    },
+    {
+      "bookingDate": "2025-12-15",
+      "transactionAmount": {
+        "amount": "2573.37",
+        "currency": "GBP"
+      },
+      "internalTransactionId": "mock-uuid-9903",
+      "institution": {
+        "bankName": "BARCLAYS",
+        "softCode": "20-25-36",
+        "accountNumber": "53631052",
+        "accountType": "Current"
+      },
+      "to": "PRIMARY EMPLOYER SALARY BGC",
+      "source": "BARCLAYS/BARCLAYS_2025-12_Statement.pdf"
+    },
+    {
+      "bookingDate": "2025-12-16",
+      "transactionAmount": {
+        "amount": "-1800.00",
+        "currency": "GBP"
+      },
+      "creditorName": "Internal Transfer",
+      "internalTransactionId": "mock-uuid-9904",
+      "institution": {
+        "bankName": "BARCLAYS",
+        "softCode": "20-25-36",
+        "accountNumber": "53631052",
+        "accountType": "Current"
+      },
+      "to": "REPAYMENT TO SAVINGS ACCOUNT",
+      "source": "BARCLAYS/BARCLAYS_2025-12_Statement.pdf"
+    },
+    {
+      "bookingDate": "2025-12-24",
+      "transactionAmount": {
+        "amount": "-653.00",
+        "currency": "GBP"
+      },
+      "creditorName": "National Law Group",
+      "merchantCategoryCode": "8111",
+      "internalTransactionId": "mock-uuid-9905",
+      "institution": {
+        "bankName": "BARCLAYS",
+        "accountNumber": "************7005",
+        "accountType": "CreditCard"
+      },
+      "to": "Legal Fees - Conveyancing",
+      "source": "BARCLAYS/BARCLAYS_2025-12_Statement.pdf"
+    },
+    {
+      "bookingDate": "2025-12-29",
+      "transactionAmount": {
+        "amount": "-93.00",
+        "currency": "GBP"
+      },
+      "creditorName": "Major Retailer",
+      "merchantCategoryCode": "5411",
+      "internalTransactionId": "mock-uuid-9906",
+      "institution": {
+        "bankName": "BARCLAYS",
+        "accountNumber": "************7005",
+        "accountType": "CreditCard"
+      },
+      "to": "Grocery Spend - Weekly",
+      "source": "BARCLAYS/BARCLAYS_2025-12_Statement.pdf"
+    }
+  ],
+  "period": {
+    "start": "2025-12-01",
+    "end": "2025-12-31"
+  },
+  "balance": {
+    "amount": {
+      "amount": "70930.74",
+      "currency": "GBP"
+    },
+    "referenceDate": "2026-01-19"
+  },
+  "aiReview": {
+    "insightSummary": {
+      "plain": "Mocked review: High concentration of DIY and Legal expenses noted.",
+      "html": "<p>Mocked review: High concentration of <strong>DIY</strong> and <strong>Legal</strong> expenses.</p>"
+    },
+    "actionPlan": [
+      {
+        "plain": "Review legal fee finality.",
+        "html": "Review <strong>legal fee</strong> finality."
+      }
+    ],
+    "analysisRationale": [
+      {
+        "plain": "Trend analysis based on MCC 8111.",
+        "html": "Trend analysis based on <strong>MCC 8111</strong>."
+      }
+    ]
+  }
+}

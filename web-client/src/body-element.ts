@@ -6,7 +6,8 @@ import { statement } from "@/signals.ts";
 import { prefixedElementName } from "@/prefixed-element-name.ts";
 import { createColumnHelper, getValueFromInfo } from "@/data-table.ts";
 import type { Statement } from "@app/bank-statement/types";
-import { parseMccCodeToLabel } from "@app/open-banking/mcc";
+import { parseMccCodeToLabel } from "@app/bank-statement/mcc";
+import { resolveBankName } from "@/transaction.ts";
 import { withWAStyles } from "@/wa-styles.ts";
 
 import "@wa/components/format-date/format-date.js";
@@ -96,7 +97,7 @@ const columns = [
       `;
     },
   }),
-  columnHelper.accessor((row) => row.institution.id.split("_")[0], {
+  columnHelper.accessor((row) => resolveBankName(row.institution), {
     id: "institution",
     header: "Institution",
     cell: getValueFromInfo,
@@ -104,15 +105,17 @@ const columns = [
   columnHelper.accessor(
     (row) =>
       [
-        row.institution.accountType,
-        `${row.institution.softCode ?? ""} ${row.institution.accountNumber}`
+        row.institution?.accountType ?? "",
+        `${row.institution?.softCode ?? ""} ${
+          row.institution?.accountNumber ?? ""
+        }`
           .trim(),
       ].join("_"),
     {
       id: "account",
       header: "Account",
       cell: (info) => {
-        const [accountType, accountNumber] = info.getValue().split("_");
+        const [accountType, accountNumber] = (info.getValue() ?? "").split("_");
         return html`
           <div part="account-type">${accountType}</div>
           <span part="account-number">${accountNumber}</span>
@@ -129,7 +132,7 @@ const columns = [
       id: "transactionDetails",
       header: "Transaction details",
       cell: (info) => {
-        const [to, mccCode] = info.getValue().split("_");
+        const [to, mccCode] = (info.getValue() ?? "").split("_");
         if (!mccCode) {
           return html`
             <span part="transaction-receiver">${to}</span>
@@ -225,11 +228,11 @@ export class BodyElement extends LitElement {
   }
   private calculateRowTitle(row: StatementTransaction): string {
     return [
-      row.institution.id,
-      row.institution.accountType,
-      row.institution.accountNumber,
+      resolveBankName(row.institution),
+      row.institution?.accountType ?? "",
+      row.institution?.accountNumber ?? "",
       "to",
-      row.to,
+      row.to ?? "",
     ].join("_");
   }
 }
