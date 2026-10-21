@@ -1,7 +1,7 @@
-import type { Statement, Transaction } from "@/types.ts";
-import { readAll } from "@std/io/read-all";
+import type { Statement, Transaction } from "./types.ts";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { filePathRelativeToCacheDir } from "@app/lib/workspace";
-import type { YearMonthCode } from "@/year-month-code.ts";
+import type { YearMonthCode } from "./year-month-code.ts";
 
 type BaseStatement = Omit<Statement, "period" | "balance">;
 
@@ -39,12 +39,13 @@ export function fromTransactions(
         return transaction.creditorName;
       })();
       return Object.assign(transaction, {
-        "to": to!,
+        to: to!,
       });
     })
-    .toSorted((a, b) =>
-      new Date(a.valueDateTime ?? a.bookingDateTime).getTime() -
-      new Date(b.valueDateTime ?? b.bookingDateTime).getTime()
+    .toSorted(
+      (a, b) =>
+        new Date(a.valueDateTime ?? a.bookingDateTime).getTime() -
+        new Date(b.valueDateTime ?? b.bookingDateTime).getTime(),
     );
   return {
     transactions: transactionsSorted,
@@ -55,40 +56,14 @@ export async function saveTransactionsAsMonthlyStatement(
   yearMonthCode: YearMonthCode,
   statement: Statement,
 ) {
-  await Deno.mkdir(filePathRelativeToCacheDir("statements/Consolidated"), {
-    recursive: true,
-  });
-  await Deno.open(
-    filePathRelativeToCacheDir(`statements/Consolidated/${yearMonthCode}.json`),
-    {
-      write: true,
-      create: true,
-      truncate: true,
-    },
-  ).then((file) => {
-    const encoder = new TextEncoder();
-    file.write(encoder.encode(JSON.stringify(statement, null, 4))).finally(
-      () => {
-        file.close();
-      },
-    );
-  });
+  const dir = filePathRelativeToCacheDir("statements/Consolidated");
+  await mkdir(dir, { recursive: true });
+  const filePath = filePathRelativeToCacheDir(`statements/Consolidated/${yearMonthCode}.json`);
+  await writeFile(filePath, JSON.stringify(statement, null, 4), "utf-8");
 }
 
-export function getMonthlyStatement(
-  yearMonthCode: YearMonthCode,
-): Promise<Statement> {
-  return Deno.open(
-    filePathRelativeToCacheDir(`statements/Consolidated/${yearMonthCode}.json`),
-    {
-      read: true,
-    },
-  ).then(async (file) => {
-    const content = await readAll(file).finally(
-      () => {
-        file.close();
-      },
-    );
-    return JSON.parse(new TextDecoder().decode(content));
-  });
+export async function getMonthlyStatement(yearMonthCode: YearMonthCode): Promise<Statement> {
+  const filePath = filePathRelativeToCacheDir(`statements/Consolidated/${yearMonthCode}.json`);
+  const content = await readFile(filePath, "utf-8");
+  return JSON.parse(content) as Statement;
 }

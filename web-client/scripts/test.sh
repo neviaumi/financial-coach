@@ -2,6 +2,4 @@
 
 set -ex
 
-deno fmt
-deno lint
-deno test -P
+npx vp test --run

@@ -11,8 +11,6 @@
   "display_name": "Financial Coach Daily Statement Sync",
   "description": "Every day at 9:00 AM (Europe/London), deduplicates and syncs raw bank statement PDFs from Google Drive (gdrive:expense/Statements) into .cache/statements/[Bank Name]/ using ./scripts/rclone.sh.",
   "agent_permissions": {
-    "access_grants": [
-      "command(./scripts/rclone.sh)"
-    ]
+    "access_grants": ["command(./scripts/rclone.sh)"]
   }
 }

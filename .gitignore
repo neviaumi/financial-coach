@@ -1,8 +1,8 @@
-### Deno template
+### Node.js template
 /.idea/
 /.vscode/
 
-/node_modules
+node_modules/
 
 .env.dev
 .env
@@ -15,3 +15,6 @@
 /server/config/rclone.conf
 /.cache/
 /.agents/
+
+dist/
+coverage/

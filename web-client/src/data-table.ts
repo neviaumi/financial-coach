@@ -41,21 +41,22 @@ export class DataTableElement<TData> extends LitElement {
     return html`
       <table>
         <thead>
-          ${table.getHeaderGroups().map((headerGroup) =>
-            html`
+          ${table.getHeaderGroups().map(
+            (headerGroup) => html`
               <tr>
-                ${headerGroup.headers.map((header) =>
-                  html`
+                ${headerGroup.headers.map(
+                  (header) => html`
                     <th part="header cell">
-                      ${header.isPlaceholder ? nothing : flexRender(
-                        header.column.columnDef.header,
-                        header.getContext(),
-                      )}
+                      ${
+                        header.isPlaceholder
+                          ? nothing
+                          : flexRender(header.column.columnDef.header, header.getContext())
+                      }
                     </th>
-                  `
+                  `,
                 )}
               </tr>
-            `
+            `,
           )}
         </thead>
         <tbody>
@@ -63,16 +64,15 @@ export class DataTableElement<TData> extends LitElement {
             const rowTitle = this.calculateRowTitle(row.original);
             return html`
               <tr title="${rowTitle}" aria-label="${rowTitle}">
-                ${row.getVisibleCells().map((cell) =>
-                  html`
-                    <td part="cell">
-                      ${flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext(),
-                      )}
-                    </td>
-                  `
-                )}
+                ${row
+                  .getVisibleCells()
+                  .map(
+                    (cell) => html`
+                      <td part="cell">
+                        ${flexRender(cell.column.columnDef.cell, cell.getContext())}
+                      </td>
+                    `,
+                  )}
               </tr>
             `;
           })}

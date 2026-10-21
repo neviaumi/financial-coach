@@ -85,12 +85,13 @@ for s in "${PROJECT_ROOT}"/.gemini/config/plugins/financial-coach/sidecars/*; do
   SIDECAR_ID="$(basename "$s")"
   rm -rf ~/.gemini/config/sidecars/"${SIDECAR_ID}"
   mkdir -p ~/.gemini/config/sidecars/"${SIDECAR_ID}"
-  deno eval --no-config "
+  node -e "
+    const fs = require('node:fs');
     const src = '${s}/sidecar.json';
-    const dst = Deno.env.get('HOME') + '/.gemini/config/sidecars/${SIDECAR_ID}/sidecar.json';
-    const c = JSON.parse(Deno.readTextFileSync(src));
+    const dst = process.env.HOME + '/.gemini/config/sidecars/${SIDECAR_ID}/sidecar.json';
+    const c = JSON.parse(fs.readFileSync(src, 'utf8'));
     c.agent_permissions = { workspace_uris: ['${PROJECT_URI}'], ...c.agent_permissions };
-    Deno.writeTextFileSync(dst, JSON.stringify(c, null, 2) + '\n');
+    fs.writeFileSync(dst, JSON.stringify(c, null, 2) + '\n');
   "
 done
 ```

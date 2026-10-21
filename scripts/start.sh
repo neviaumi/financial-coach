@@ -2,6 +2,5 @@
 
 set -e
 
-# Run the unified start-all orchestrator script using Deno
-deno run -A ./scripts/supports/start-all.ts
-
+# Run the unified start-all orchestrator script using Node.js
+node ./scripts/supports/start-all.ts

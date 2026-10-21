@@ -1,11 +1,10 @@
 #!/usr/bin/env bash
 set -ex
 
-
 MODE=${1:---dev}
 
 if [ "$MODE" == "--dev" ]; then
-    deno serve -P --port 8084 --watch-hmr ./main.ts
+    node --watch ./main.ts
 else
-    deno serve -P --port 8084 ./main.ts
+    node ./main.ts
 fi

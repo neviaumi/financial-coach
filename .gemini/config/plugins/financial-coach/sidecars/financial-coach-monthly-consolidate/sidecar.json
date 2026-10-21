@@ -11,9 +11,6 @@
   "display_name": "Financial Coach Monthly Statement Consolidation",
   "description": "On the 15th of every month at 10:00 AM (Europe/London), runs statement-extractor 8x and statement-classifier 4x with semantic merging to produce .cache/statements/Consolidated/YYYY-MM.json, prints https://finance.home.handy-david.dev/statements/YYYY-MM to YYYY-MM.pdf via ./scripts/print-statement.sh, and uploads both to Google Drive via ./scripts/rclone.sh.",
   "agent_permissions": {
-    "access_grants": [
-      "command(./scripts/print-statement.sh)",
-      "command(./scripts/rclone.sh)"
-    ]
+    "access_grants": ["command(./scripts/print-statement.sh)", "command(./scripts/rclone.sh)"]
   }
 }

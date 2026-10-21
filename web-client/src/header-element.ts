@@ -12,9 +12,7 @@ import "@wa/components/format-date/format-date.js";
 import "@wa/components/format-number/format-number.js";
 import "@wa/components/divider/divider.js";
 
-const elementNameStatementBalance = prefixedElementName<"statement-balance">(
-  "statement-balance",
-);
+const elementNameStatementBalance = prefixedElementName<"statement-balance">("statement-balance");
 
 @customElement(elementNameStatementBalance)
 export class StatementBalanceElement extends SignalWatcher(LitElement) {
@@ -45,9 +43,7 @@ export class StatementBalanceElement extends SignalWatcher(LitElement) {
     return html`
       <my-two-columns>
         <label>Statement Balance:</label>
-        <span part="${isPossitiveAmount
-          ? "balance-positive"
-          : "balance-negative"}">
+        <span part="${isPossitiveAmount ? "balance-positive" : "balance-negative"}">
           ${isPossitiveAmount ? "+" : "-"}<wa-format-number
             type="currency"
             currency="GBP"
@@ -60,9 +56,7 @@ export class StatementBalanceElement extends SignalWatcher(LitElement) {
   }
 }
 
-const elementNameBankBalance = prefixedElementName<"bank-balance">(
-  "bank-balance",
-);
+const elementNameBankBalance = prefixedElementName<"bank-balance">("bank-balance");
 
 @customElement(elementNameBankBalance)
 export class BankBalanceElement extends SignalWatcher(LitElement) {
@@ -88,14 +82,16 @@ export class BankBalanceElement extends SignalWatcher(LitElement) {
         <label>Bank balance:</label>
         <div>
           <span class="no-wrap">
-            As of <wa-format-date
+            As of
+            <wa-format-date
               part="month-year"
               lang="en-GB"
               date="${referenceDate}"
               day="2-digit"
               month="short"
               year="numeric"
-            ></wa-format-date></span><br />
+            ></wa-format-date></span
+          ><br />
           <wa-format-number
             part="balance"
             type="currency"
@@ -108,11 +104,8 @@ export class BankBalanceElement extends SignalWatcher(LitElement) {
     `;
   }
 }
-const elementNameStatementDateRange = prefixedElementName<
-  "statement-date-range"
->(
-  "statement-date-range",
-);
+const elementNameStatementDateRange =
+  prefixedElementName<"statement-date-range">("statement-date-range");
 
 @customElement(elementNameStatementDateRange)
 export class StatementDateRangeElement extends SignalWatcher(LitElement) {
@@ -134,15 +127,8 @@ export class StatementDateRangeElement extends SignalWatcher(LitElement) {
         <label>Statement Period:</label>
         <span>
           <div>
-            <wa-format-date
-              lang="en-GB"
-              date="${start}"
-              day="2-digit"
-            ></wa-format-date> - <wa-format-date
-              lang="en-GB"
-              date="${end}"
-              day="2-digit"
-            ></wa-format-date>
+            <wa-format-date lang="en-GB" date="${start}" day="2-digit"></wa-format-date> -
+            <wa-format-date lang="en-GB" date="${end}" day="2-digit"></wa-format-date>
           </div>
           <wa-format-date
             part="month-year"
@@ -157,9 +143,7 @@ export class StatementDateRangeElement extends SignalWatcher(LitElement) {
   }
 }
 
-const elementNameInstitutionList = prefixedElementName<"institution-list">(
-  "institution-list",
-);
+const elementNameInstitutionList = prefixedElementName<"institution-list">("institution-list");
 
 @customElement(elementNameInstitutionList)
 export class InstitutionListElement extends SignalWatcher(LitElement) {
@@ -176,8 +160,7 @@ export class InstitutionListElement extends SignalWatcher(LitElement) {
     }
     .my-grid {
       display: grid;
-      grid-template-columns:
-        var(--my-size-24) var(--my-size-24) var(--my-size-24);
+      grid-template-columns: var(--my-size-24) var(--my-size-24) var(--my-size-24);
       gap: var(--wa-space-m);
     }
     :host::part(bank-account-listing) {
@@ -217,32 +200,31 @@ export class InstitutionListElement extends SignalWatcher(LitElement) {
         ${repeat(
           institutions,
           ([institutionId]) => institutionId,
-          ([institutionId, accounts]) =>
-            html`
-              <section title="${institutionId}" part="bank-account-listing">
-                <wa-tag variant="brand" appearance="outlined" part="institution"
-                >${institutionId}</wa-tag>
-                <ul>
-                  ${repeat(
-                    accounts,
-                    (account) => account.accountNumber,
-                    (account) => {
-                      const accountNumber = `${
-                        account.softCode ?? ""
-                      } ${account.accountNumber}`.trim();
-                      return html`
-                        <li part="account">
-                          <span part="account-type">${account
-                            .accountType}</span><br />
-                          <span part="account-number">${accountNumber}</span>
-                        </li>
-                        <wa-divider></wa-divider>
-                      `;
-                    },
-                  )}
-                </ul>
-              </section>
-            `,
+          ([institutionId, accounts]) => html`
+            <section title="${institutionId}" part="bank-account-listing">
+              <wa-tag variant="brand" appearance="outlined" part="institution"
+                >${institutionId}</wa-tag
+              >
+              <ul>
+                ${repeat(
+                  accounts,
+                  (account) => account.accountNumber,
+                  (account) => {
+                    const accountNumber = `${
+                      account.softCode ?? ""
+                    } ${account.accountNumber}`.trim();
+                    return html`
+                      <li part="account">
+                        <span part="account-type">${account.accountType}</span><br />
+                        <span part="account-number">${accountNumber}</span>
+                      </li>
+                      <wa-divider></wa-divider>
+                    `;
+                  },
+                )}
+              </ul>
+            </section>
+          `,
         )}
       </div>
     `;
@@ -253,32 +235,30 @@ const elementName = prefixedElementName<"header">("header");
 
 @customElement(elementName)
 export class HeaderElement extends LitElement {
-  static override styles = withWAStyles(
-    css`
-      :host {
-        break-inside: avoid;
-      }
-      wa-avatar {
-        --size: var(--my-size-20);
-      }
-      .row1 {
-        justify-content: center;
-        align-items: center;
-      }
-      .row2 {
-        display: flex;
-        justify-content: space-between;
-      }
-      .row2-right {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-      }
-      wa-divider {
-        --color: var(--wa-color-border-quiet);
-      }
-    `,
-  );
+  static override styles = withWAStyles(css`
+    :host {
+      break-inside: avoid;
+    }
+    wa-avatar {
+      --size: var(--my-size-20);
+    }
+    .row1 {
+      justify-content: center;
+      align-items: center;
+    }
+    .row2 {
+      display: flex;
+      justify-content: space-between;
+    }
+    .row2-right {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    wa-divider {
+      --color: var(--wa-color-border-quiet);
+    }
+  `);
   override render() {
     return html`
       <header>

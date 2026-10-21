@@ -1,6 +1,6 @@
-export function getStableStatementStartDate(
-  date: Temporal.PlainDate,
-): Temporal.PlainDate {
+import { Temporal } from "@js-temporal/polyfill";
+
+export function getStableStatementStartDate(date: Temporal.PlainDate): Temporal.PlainDate {
   const today = Temporal.Now.plainDateISO();
   if (today.since(date.with({ day: date.daysInMonth })).total("day") < 15) {
     return today.subtract({ months: 1 }).with({ day: 1 });

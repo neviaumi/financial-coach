@@ -1,105 +1,77 @@
+import { spawn, type ChildProcess } from "node:child_process";
+import { resolve } from "node:path";
+
 const serverPrefix = "\x1b[36m[server]\x1b[0m"; // Cyan
 const clientPrefix = "\x1b[35m[client]\x1b[0m"; // Magenta
 
-async function pipeStream(
-  reader: ReadableStreamDefaultReader<Uint8Array>,
-  prefix: string,
-  streamType: "stdout" | "stderr",
-) {
-  const decoder = new TextDecoder();
-  let buffer = "";
-  try {
-    while (true) {
-      const { done, value } = await reader.read();
-      if (done) break;
-      buffer += decoder.decode(value, { stream: true });
-      const lines = buffer.split("\n");
-      buffer = lines.pop() ?? "";
-      for (const line of lines) {
-        if (streamType === "stderr") {
-          console.error(`${prefix} ${line}`);
-        } else {
-          console.log(`${prefix} ${line}`);
-        }
-      }
+const rootDir = resolve(import.meta.dirname, "../..");
+
+function pipeProcess(child: ChildProcess, prefix: string) {
+  child.stdout?.on("data", (data: Buffer) => {
+    const lines = data.toString().split("\n");
+    for (const line of lines) {
+      if (line) console.log(`${prefix} ${line}`);
     }
-    if (buffer) {
-      if (streamType === "stderr") {
-        console.error(`${prefix} ${buffer}`);
-      } else {
-        console.log(`${prefix} ${buffer}`);
-      }
+  });
+  child.stderr?.on("data", (data: Buffer) => {
+    const lines = data.toString().split("\n");
+    for (const line of lines) {
+      if (line) console.error(`${prefix} ${line}`);
     }
-  } catch (_err) {
-    // Stream closed or read error
-  }
+  });
 }
 
-const serverCommand = new Deno.Command("./scripts/start.sh", {
-  cwd: "./server",
-  stdout: "piped",
-  stderr: "piped",
-});
-
-const clientCommand = new Deno.Command("./scripts/start.sh", {
-  cwd: "./web-client",
-  stdout: "piped",
-  stderr: "piped",
-});
-
 console.log(`${serverPrefix} Starting server...`);
-const serverChild = serverCommand.spawn();
+const serverChild = spawn("./scripts/start.sh", [], {
+  cwd: resolve(rootDir, "server"),
+  shell: true,
+  stdio: ["inherit", "pipe", "pipe"],
+});
+pipeProcess(serverChild, serverPrefix);
 
 console.log(`${clientPrefix} Starting web-client...`);
-const clientChild = clientCommand.spawn();
+const clientChild = spawn("./scripts/start.sh", [], {
+  cwd: resolve(rootDir, "web-client"),
+  shell: true,
+  stdio: ["inherit", "pipe", "pipe"],
+});
+pipeProcess(clientChild, clientPrefix);
 
 let exiting = false;
-
 function cleanup() {
   if (exiting) return;
   exiting = true;
   console.log("\nShutting down both processes...");
   try {
     serverChild.kill("SIGINT");
-  } catch (_) {
+  } catch {
     // ignore
   }
   try {
     clientChild.kill("SIGINT");
-  } catch (_) {
+  } catch {
     // ignore
   }
 }
 
-Deno.addSignalListener("SIGINT", () => {
+process.on("SIGINT", () => {
   cleanup();
-  Deno.exit(0);
+  process.exit(0);
 });
 
-Deno.addSignalListener("SIGTERM", () => {
+process.on("SIGTERM", () => {
   cleanup();
-  Deno.exit(0);
+  process.exit(0);
 });
 
-// Stream logs in background
-const serverStdoutReader = serverChild.stdout.getReader();
-const serverStderrReader = serverChild.stderr.getReader();
-const clientStdoutReader = clientChild.stdout.getReader();
-const clientStderrReader = clientChild.stderr.getReader();
-
-pipeStream(serverStdoutReader, serverPrefix, "stdout");
-pipeStream(serverStderrReader, serverPrefix, "stderr");
-pipeStream(clientStdoutReader, clientPrefix, "stdout");
-pipeStream(clientStderrReader, clientPrefix, "stderr");
-
-// Wait for either to exit
-const serverStatusPromise = serverChild.status;
-const clientStatusPromise = clientChild.status;
-
-Promise.any([serverStatusPromise, clientStatusPromise]).then((status) => {
-  console.log(
-    `One of the child processes exited (code: ${status.code}, success: ${status.success}). Shutting down...`,
-  );
+serverChild.on("exit", (code) => {
+  console.log(`${serverPrefix} Exited with code ${code}`);
   cleanup();
-  Deno.exit(status.code);
+  process.exit(code ?? 0);
+});
+
+clientChild.on("exit", (code) => {
+  console.log(`${clientPrefix} Exited with code ${code}`);
+  cleanup();
+  process.exit(code ?? 0);
 });

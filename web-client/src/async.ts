@@ -6,8 +6,5 @@ export function getMonthlyStatement(
   yearMonthCode: YearMonthCode,
   options?: { signal?: AbortSignal },
 ): Promise<Statement> {
-  return fetch(
-    `/api/statements/${yearMonthCode}.json`,
-    options,
-  ).then(toJson<Statement>);
+  return fetch(`/api/statements/${yearMonthCode}.json`, options).then(toJson<Statement>);
 }

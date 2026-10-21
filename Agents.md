@@ -61,10 +61,10 @@ agents working in this repository.
 
     if [ "$MODE" == "--dev" ]; then
         # Run in development mode (e.g., with watch / HMR enabled)
-        deno serve -P --port 8084 --watch-hmr ./main.ts
+        node --watch ./main.ts
     else
         # Run in production mode (e.g., when invoked with --prod from Dockerfile CMD)
-        deno serve -P --port 8084 ./main.ts
+        node ./main.ts
     fi
     ```
 

@@ -4,8 +4,8 @@ set -ex
 MODE=${1:---dev}
 
 if [ "$MODE" == "--dev" ]; then
-    deno run -A npm:vite dev
+    npx vp dev --host
 else
-    deno run -A npm:vite build
-    deno run -A npm:vite preview --host
+    npx vp build
+    npx vp preview --host
 fi
