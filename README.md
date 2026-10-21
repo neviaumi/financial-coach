@@ -103,17 +103,9 @@ bash ./scripts/start.sh
    ```bash
    npm install
    ```
-2. **Run Unit Tests**:
+2. **Run Tests, Lint, and Format Checks**:
    ```bash
-   npm test
-   ```
-3. **Linting**:
-   ```bash
-   npm run lint
-   ```
-4. **Formatting**:
-   ```bash
-   npm run fmt
+   bash ./scripts/test.sh
    ```
 
 ## License

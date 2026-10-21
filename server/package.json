@@ -2,13 +2,6 @@
   "name": "@app/server",
   "version": "1.0.0",
   "type": "module",
-  "scripts": {
-    "start": "./scripts/start.sh",
-    "test": "vp test --run --passWithNoTests",
-    "lint": "vp lint",
-    "fmt": "vp fmt",
-    "fmt:check": "vp fmt --check"
-  },
   "dependencies": {
     "@app/bank-statement": "*",
     "@app/lib": "*",

@@ -2,18 +2,11 @@
   "name": "financial-coach-monorepo",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "workspaces": [
     "bank-statement",
     "lib",
     "server",
     "web-client"
-  ],
-  "type": "module",
-  "scripts": {
-    "start": "node ./scripts/supports/start-all.ts",
-    "test": "npm run test --workspaces --if-present",
-    "lint": "npm run lint --workspaces --if-present",
-    "fmt": "npm run fmt --workspaces --if-present",
-    "fmt:check": "npm run fmt:check --workspaces --if-present"
-  }
+  ]
 }

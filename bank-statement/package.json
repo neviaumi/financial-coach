@@ -9,12 +9,6 @@
     "./types": "./types.ts",
     "./mcc": "./mcc.ts"
   },
-  "scripts": {
-    "test": "vp test --run",
-    "lint": "vp lint",
-    "fmt": "vp fmt",
-    "fmt:check": "vp fmt --check"
-  },
   "dependencies": {
     "@app/lib": "*",
     "@js-temporal/polyfill": "^0.5.1"

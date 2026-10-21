@@ -2,15 +2,6 @@
   "name": "@app/web-client",
   "version": "1.0.0",
   "type": "module",
-  "scripts": {
-    "dev": "vp dev",
-    "build": "vp build",
-    "preview": "vp preview",
-    "test": "vp test --run",
-    "lint": "vp lint",
-    "fmt": "vp fmt",
-    "fmt:check": "vp fmt --check"
-  },
   "dependencies": {
     "@app/bank-statement": "*",
     "@app/lib": "*",
