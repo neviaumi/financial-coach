@@ -54,19 +54,19 @@ export class AiReviewElement extends LitElement {
           <section title="Rationale">
             <h3>Rationale</h3>
             <ul>
-              ${map(aiReview.analysisRationale, (rationale) =>
-                html`
-                  <li>${unsafeHTML(rationale.html)}</li>
-                `)}
+              ${map(
+                aiReview.analysisRationale,
+                (rationale) => html` <li>${unsafeHTML(rationale.html)}</li> `,
+              )}
             </ul>
           </section>
           <section title="Action Plans">
             <h3>Action Plans</h3>
             <ul>
-              ${map(aiReview.actionPlan, (actionPlan) =>
-                html`
-                  <li>${unsafeHTML(actionPlan.html)}</li>
-                `)}
+              ${map(
+                aiReview.actionPlan,
+                (actionPlan) => html` <li>${unsafeHTML(actionPlan.html)}</li> `,
+              )}
             </ul>
           </section>
         </article>
@@ -106,10 +106,7 @@ const columns = [
     (row) =>
       [
         row.institution?.accountType ?? "",
-        `${row.institution?.softCode ?? ""} ${
-          row.institution?.accountNumber ?? ""
-        }`
-          .trim(),
+        `${row.institution?.softCode ?? ""} ${row.institution?.accountNumber ?? ""}`.trim(),
       ].join("_"),
     {
       id: "account",
@@ -124,53 +121,42 @@ const columns = [
     },
   ),
   columnHelper.accessor(
-    (row) =>
-      row.merchantCategoryCode
-        ? [row.to, row.merchantCategoryCode].join("_")
-        : row.to,
+    (row) => (row.merchantCategoryCode ? [row.to, row.merchantCategoryCode].join("_") : row.to),
     {
       id: "transactionDetails",
       header: "Transaction details",
       cell: (info) => {
         const [to, mccCode] = (info.getValue() ?? "").split("_");
         if (!mccCode) {
-          return html`
-            <span part="transaction-receiver">${to}</span>
-          `;
+          return html` <span part="transaction-receiver">${to}</span> `;
         }
         return html`
-          <span part="transaction-category">${parseMccCodeToLabel(
-            mccCode,
-          )}</span>
+          <span part="transaction-category">${parseMccCodeToLabel(mccCode)}</span>
           <br />
           <span part="transaction-receiver">${to}</span>
         `;
       },
     },
   ),
-  columnHelper.accessor(
-    "transactionAmount",
-    {
-      id: "Amount",
-      header: "Amount",
-      cell: (info) => {
-        const amount = info.getValue();
-        const amountValue = parseFloat(amount.amount);
-        const isPossitiveAmount = amountValue >= 0;
-        return html`
-          <my-two-columns part="amount ${isPossitiveAmount
-            ? "amount-income"
-            : "amount-payout"}">
-            ${isPossitiveAmount ? "+" : "-"}<wa-format-number
-              type="currency"
-              currency="${amount.currency}"
-              value="${Math.abs(amountValue)}"
-              lang="en-GB"
-            ></wa-format-number></my-two-columns>
-        `;
-      },
+  columnHelper.accessor("transactionAmount", {
+    id: "Amount",
+    header: "Amount",
+    cell: (info) => {
+      const amount = info.getValue();
+      const amountValue = parseFloat(amount.amount);
+      const isPossitiveAmount = amountValue >= 0;
+      return html`
+        <my-two-columns part="amount ${isPossitiveAmount ? "amount-income" : "amount-payout"}">
+          ${isPossitiveAmount ? "+" : "-"}<wa-format-number
+            type="currency"
+            currency="${amount.currency}"
+            value="${Math.abs(amountValue)}"
+            lang="en-GB"
+          ></wa-format-number
+        ></my-two-columns>
+      `;
     },
-  ),
+  }),
 ];
 
 @customElement(elementName)

@@ -1,16 +1,6 @@
-type MonthCode =
-  | "01"
-  | "02"
-  | "03"
-  | "04"
-  | "05"
-  | "06"
-  | "07"
-  | "08"
-  | "09"
-  | "10"
-  | "11"
-  | "12";
+import { Temporal } from "@js-temporal/polyfill";
+
+type MonthCode = "01" | "02" | "03" | "04" | "05" | "06" | "07" | "08" | "09" | "10" | "11" | "12";
 export type YearMonthCode = `${number}-${MonthCode}`;
 export function isYearMonthCode(value: string): value is YearMonthCode {
   // Use a Regex to check for exactly 4 digits, a hyphen, and 2 digits
@@ -18,28 +8,21 @@ export function isYearMonthCode(value: string): value is YearMonthCode {
 }
 export class InvalidYearMonthCodeError extends Error {
   constructor(value: string) {
-    super(
-      `Invalid YearMonthCode: ${value}, expected format YYYY-MM, for example: 2023-01`,
-    );
+    super(`Invalid YearMonthCode: ${value}, expected format YYYY-MM, for example: 2023-01`);
     this.name = "InvalidYearMonthCodeError";
   }
 }
 
-export function toYearMonthCode(
-  date: Temporal.PlainDate | string | undefined,
-): YearMonthCode {
+export function toYearMonthCode(date: Temporal.PlainDate | string | undefined): YearMonthCode {
   if (!date) throw new InvalidYearMonthCodeError(`yearMonthCode is empty`);
-  const yearMonthCode: string = typeof date === "string"
-    ? date
-    : `${date.year}-${String(date.month).padStart(2, "0")}`;
+  const yearMonthCode: string =
+    typeof date === "string" ? date : `${date.year}-${String(date.month).padStart(2, "0")}`;
   if (isYearMonthCode(yearMonthCode)) {
     return yearMonthCode;
   } else throw new InvalidYearMonthCodeError(yearMonthCode);
 }
 
-export function dateFromYearMonthCode(
-  yearMonthCode: string,
-): Temporal.PlainDate {
+export function dateFromYearMonthCode(yearMonthCode: string): Temporal.PlainDate {
   if (yearMonthCode === "now") {
     return Temporal.Now.plainDateISO().with({ day: 1 });
   }

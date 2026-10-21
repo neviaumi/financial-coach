@@ -1,5 +1,11 @@
+import { serve } from "@hono/node-server";
 import app from "./app.ts";
 
-export default {
+const port = Number(process.env.PORT) || 8084;
+console.log(`Server is running on port ${port}`);
+
+serve({
   fetch: app.fetch,
-} satisfies Deno.ServeDefaultExport;
+  port,
+  hostname: "0.0.0.0",
+});

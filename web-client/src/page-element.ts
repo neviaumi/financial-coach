@@ -110,13 +110,12 @@ export class PageElement extends LitElement {
     task: async (_, { signal }) => {
       const path = globalThis.location.pathname;
       const segments = path.split("/").filter(Boolean);
-      return await getMonthlyStatement(
-        toYearMonthCode(segments.pop()),
-        { signal },
-      ).then((statementResp) => {
-        statement.set(statementResp);
-        return statementResp;
-      });
+      return await getMonthlyStatement(toYearMonthCode(segments.pop()), { signal }).then(
+        (statementResp) => {
+          statement.set(statementResp);
+          return statementResp;
+        },
+      );
     },
     args: () => [],
   });
@@ -134,8 +133,7 @@ export class PageElement extends LitElement {
   }
 
   private taskRenderPending = () => {
-    return html`
-    `;
+    return html``;
   };
 
   private taskRenderComplete = () => {
@@ -147,9 +145,7 @@ export class PageElement extends LitElement {
   };
 
   private taskRenderError = (e: Error) => {
-    return html`
-      <div role="alert">${e.message}</div>
-    `;
+    return html` <div role="alert">${e.message}</div> `;
   };
 }
 

@@ -1,0 +1,12 @@
+{
+  "name": "financial-coach-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "bank-statement",
+    "lib",
+    "server",
+    "web-client"
+  ]
+}

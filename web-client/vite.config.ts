@@ -1,8 +1,7 @@
 import { defineConfig } from "vite";
-import deno from "@deno/vite-plugin";
+import { resolve } from "node:path";
 
 export default defineConfig({
-  plugins: [deno()],
   server: {
     port: 8080,
     strictPort: true,
@@ -19,12 +18,16 @@ export default defineConfig({
   resolve: {
     alias: [
       {
+        find: "@/",
+        replacement: `${resolve(import.meta.dirname, "./src")}/`,
+      },
+      {
         find: "@public/",
         replacement: "/",
       },
       {
         find: "@wa/",
-        replacement: "@awesome.me/webawesome/dist/",
+        replacement: `${resolve(import.meta.dirname, "../node_modules/@awesome.me/webawesome/dist")}/`,
       },
     ],
   },

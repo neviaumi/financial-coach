@@ -1,11 +1,7 @@
 class FetchResponseError extends Error {
   response: Response;
   body: string | undefined;
-  constructor(
-    message: string,
-    resp: Response,
-    body: typeof FetchResponseError.prototype.body,
-  ) {
+  constructor(message: string, resp: Response, body: typeof FetchResponseError.prototype.body) {
     super(message);
     this.name = "FetchResponseError";
     this.response = resp;
@@ -16,11 +12,7 @@ class FetchResponseError extends Error {
 export async function verifyResponse(resp: Response): Promise<Response> {
   if (!resp.ok) {
     const body = await resp.text().catch(() => undefined);
-    throw new FetchResponseError(
-      `${resp.status} ${resp.statusText}`,
-      resp,
-      body,
-    );
+    throw new FetchResponseError(`${resp.status} ${resp.statusText}`, resp, body);
   }
   return resp;
 }

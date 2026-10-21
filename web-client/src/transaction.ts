@@ -8,7 +8,7 @@ export type InstitutionInfo = Omit<Institution, "bankName">;
  * Defensively handles missing or undefined values without throwing.
  */
 export function resolveBankName(
-  institution?: Partial<Institution> & { id?: string } | null,
+  institution?: (Partial<Institution> & { id?: string }) | null,
 ): string {
   if (!institution) return "Unknown";
   if (institution.bankName) {
@@ -31,12 +31,11 @@ export function getInstitutions(
         institutions[bankName] = [];
       }
 
-      const existingInstitutionAccount = institutions[bankName].find((
-        institutionInfo,
-      ) =>
-        institutionInfo.softCode === institution.softCode &&
-        institutionInfo.accountNumber === institution.accountNumber &&
-        institutionInfo.accountType === institution.accountType
+      const existingInstitutionAccount = institutions[bankName].find(
+        (institutionInfo) =>
+          institutionInfo.softCode === institution.softCode &&
+          institutionInfo.accountNumber === institution.accountNumber &&
+          institutionInfo.accountType === institution.accountType,
       );
       if (existingInstitutionAccount) return institutions;
       institutions[bankName].push({
@@ -50,10 +49,12 @@ export function getInstitutions(
     {},
   );
 
-  return Object.entries(institutions).map(([bankName, accounts]) => {
-    return [
-      bankName,
-      accounts.sort((a, b) => a.accountNumber.localeCompare(b.accountNumber)),
-    ] as const;
-  }).toSorted(([a], [b]) => a.localeCompare(b));
+  return Object.entries(institutions)
+    .map(([bankName, accounts]) => {
+      return [
+        bankName,
+        accounts.sort((a, b) => a.accountNumber.localeCompare(b.accountNumber)),
+      ] as const;
+    })
+    .toSorted(([a], [b]) => a.localeCompare(b));
 }

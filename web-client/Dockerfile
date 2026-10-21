@@ -1,15 +1,15 @@
-FROM denoland/deno:latest
+FROM node:24-alpine
+
+RUN apk add --no-cache bash
 
 WORKDIR /app
 
-COPY deno.json ./
-RUN deno eval 'const cfg = JSON.parse(Deno.readTextFileSync("deno.json")); cfg.workspace = ["./lib", "./bank-statement", "./web-client"]; Deno.writeTextFileSync("deno.json", JSON.stringify(cfg, null, 2));'
+COPY package.json package-lock.json* ./
+COPY lib/package.json ./lib/package.json
+COPY bank-statement/package.json ./bank-statement/package.json
+COPY web-client/package.json ./web-client/package.json
 
-COPY lib/deno.json ./lib/deno.json
-COPY bank-statement/deno.json ./bank-statement/deno.json
-COPY web-client/deno.json ./web-client/deno.json
-
-RUN deno install
+RUN npm install
 
 COPY lib ./lib
 COPY bank-statement ./bank-statement
