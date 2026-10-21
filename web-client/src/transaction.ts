@@ -1,18 +1,37 @@
 import type { Institution, Transaction } from "@app/bank-statement/types";
 
-type InstitutionInfo = Omit<Institution, "id">;
+export type InstitutionInfo = Omit<Institution, "bankName">;
+
+/**
+ * Resolves the display bank name for an institution, supporting both
+ * the current `bankName` field and legacy `id` format (e.g. "HSBC_001").
+ * Defensively handles missing or undefined values without throwing.
+ */
+export function resolveBankName(
+  institution?: Partial<Institution> & { id?: string } | null,
+): string {
+  if (!institution) return "Unknown";
+  if (institution.bankName) {
+    return institution.bankName;
+  }
+  if (typeof institution.id === "string" && institution.id.length > 0) {
+    return institution.id.split("_")[0] || "Unknown";
+  }
+  return "Unknown";
+}
+
 export function getInstitutions(
   transactions: Transaction[],
 ): (readonly [string, InstitutionInfo[]])[] {
   const institutions = transactions.reduce<Record<string, InstitutionInfo[]>>(
     (institutions, transaction) => {
       const { institution } = transaction;
-      const institutionId = institution.id.split("_")[0];
-      if (!institutions[institutionId]) {
-        institutions[institutionId] = [];
+      const bankName = resolveBankName(institution);
+      if (!institutions[bankName]) {
+        institutions[bankName] = [];
       }
 
-      const existingInstitutionAccount = institutions[institutionId].find((
+      const existingInstitutionAccount = institutions[bankName].find((
         institutionInfo,
       ) =>
         institutionInfo.softCode === institution.softCode &&
@@ -20,7 +39,7 @@ export function getInstitutions(
         institutionInfo.accountType === institution.accountType
       );
       if (existingInstitutionAccount) return institutions;
-      institutions[institutionId].push({
+      institutions[bankName].push({
         softCode: institution.softCode,
         accountNumber: institution.accountNumber,
         accountType: institution.accountType,
@@ -31,9 +50,9 @@ export function getInstitutions(
     {},
   );
 
-  return Object.entries(institutions).map(([institutionId, accounts]) => {
+  return Object.entries(institutions).map(([bankName, accounts]) => {
     return [
-      institutionId,
+      bankName,
       accounts.sort((a, b) => a.accountNumber.localeCompare(b.accountNumber)),
     ] as const;
   }).toSorted(([a], [b]) => a.localeCompare(b));

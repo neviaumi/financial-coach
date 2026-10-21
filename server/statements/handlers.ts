@@ -32,7 +32,7 @@ app.get("/:yearMonthCode{.+\\.json}", (c: Context) => {
         return stringify(statement.transactions, {
           bom: true,
           columns: [
-            { prop: ["institution", "id"], header: "from.Bank" },
+            { prop: ["institution", "bankName"], header: "from.Bank" },
             {
               prop: ["institution", "accountNumber"],
               header: "from.AccountNumber",
@@ -40,6 +40,10 @@ app.get("/:yearMonthCode{.+\\.json}", (c: Context) => {
             {
               prop: ["institution", "accountType"],
               header: "from.AccountType",
+            },
+            {
+              prop: ["source"],
+              header: "source",
             },
             {
               prop: ["merchantCategoryCode"],

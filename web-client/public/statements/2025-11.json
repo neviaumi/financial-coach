@@ -26,12 +26,13 @@
       "remittanceInformationUnstructured": "Market Oxford Ref:VOH4RP",
       "internalTransactionId": "7w12dypatfqx5c9o",
       "institution": {
-        "id": "FinTech_2QIJVOJV",
+        "bankName": "FinTech",
         "softCode": "73-30-43",
         "accountNumber": "********2592",
         "accountType": "Saving"
       },
-      "to": "Sad Service"
+      "to": "Sad Service",
+      "source": "FinTech/FinTech_2025-11_Statement.pdf"
     },
     {
       "bookingDate": "2025-11-03",
@@ -45,11 +46,12 @@
       "merchantCategoryCode": "5995",
       "internalTransactionId": "600ya3prar7kdxnc",
       "institution": {
-        "id": "BankB_YVFV3PI9",
+        "bankName": "BankB",
         "accountNumber": "********2417",
         "accountType": "CreditCard"
       },
-      "to": "Silver Shop"
+      "to": "Silver Shop",
+      "source": "BankB/BankB_2025-11_Statement.pdf"
     },
     {
       "bookingDate": "2025-11-03",
@@ -63,11 +65,12 @@
       "merchantCategoryCode": "7523",
       "internalTransactionId": "x49evmwtwi6lvzok",
       "institution": {
-        "id": "BankB_YVFV3PI9",
+        "bankName": "BankB",
         "accountNumber": "********2417",
         "accountType": "CreditCard"
       },
-      "to": "Blue Market"
+      "to": "Blue Market",
+      "source": "BankB/BankB_2025-11_Statement.pdf"
     },
     {
       "bookingDate": "2025-11-03",
@@ -81,12 +84,13 @@
       "remittanceInformationUnstructured": "Company Oxford Ref:R27HY4",
       "internalTransactionId": "5dyfle7xkdsarss6",
       "institution": {
-        "id": "FinTech_EA2MO327",
+        "bankName": "FinTech",
         "softCode": "20-82-22",
         "accountNumber": "********2016",
         "accountType": "Current"
       },
-      "to": "Bright Service"
+      "to": "Bright Service",
+      "source": "FinTech/FinTech_2025-11_Statement.pdf"
     },
     {
       "bookingDate": "2025-11-04",
@@ -100,11 +104,12 @@
       "merchantCategoryCode": "5734",
       "internalTransactionId": "y9lz69knrxxihizv",
       "institution": {
-        "id": "BankB_YVFV3PI9",
+        "bankName": "BankB",
         "accountNumber": "********2417",
         "accountType": "CreditCard"
       },
-      "to": "Green Market"
+      "to": "Green Market",
+      "source": "BankB/BankB_2025-11_Statement.pdf"
     },
     {
       "bookingDate": "2025-11-06",
@@ -118,11 +123,12 @@
       "merchantCategoryCode": "7999",
       "internalTransactionId": "f71wjvkxzskx3hdl",
       "institution": {
-        "id": "BankB_YVFV3PI9",
+        "bankName": "BankB",
         "accountNumber": "********2417",
         "accountType": "CreditCard"
       },
-      "to": "Blue Station"
+      "to": "Blue Station",
+      "source": "BankB/BankB_2025-11_Statement.pdf"
     },
     {
       "bookingDate": "2025-11-10",
@@ -136,11 +142,12 @@
       "merchantCategoryCode": "5411",
       "internalTransactionId": "jy8r76faygm40y1v",
       "institution": {
-        "id": "BankB_YVFV3PI9",
+        "bankName": "BankB",
         "accountNumber": "********2417",
         "accountType": "CreditCard"
       },
-      "to": "Golden Restaurant"
+      "to": "Golden Restaurant",
+      "source": "BankB/BankB_2025-11_Statement.pdf"
     },
     {
       "bookingDate": "2025-11-10",
@@ -154,11 +161,12 @@
       "merchantCategoryCode": "7523",
       "internalTransactionId": "335ys9hwkyw6eqf3",
       "institution": {
-        "id": "BankB_YVFV3PI9",
+        "bankName": "BankB",
         "accountNumber": "********2417",
         "accountType": "CreditCard"
       },
-      "to": "Green Company"
+      "to": "Green Company",
+      "source": "BankB/BankB_2025-11_Statement.pdf"
     },
     {
       "bookingDate": "2025-11-10",
@@ -172,11 +180,12 @@
       "merchantCategoryCode": "5812",
       "internalTransactionId": "snj6244mj9ozdki4",
       "institution": {
-        "id": "BankB_YVFV3PI9",
+        "bankName": "BankB",
         "accountNumber": "********2417",
         "accountType": "CreditCard"
       },
-      "to": "Green Restaurant"
+      "to": "Green Restaurant",
+      "source": "BankB/BankB_2025-11_Statement.pdf"
     },
     {
       "bookingDate": "2025-11-10",
@@ -190,11 +199,12 @@
       "merchantCategoryCode": "5541",
       "internalTransactionId": "9ib2cz9y0gnd1kqi",
       "institution": {
-        "id": "BankB_YVFV3PI9",
+        "bankName": "BankB",
         "accountNumber": "********2417",
         "accountType": "CreditCard"
       },
-      "to": "Sad Cafe"
+      "to": "Sad Cafe",
+      "source": "BankB/BankB_2025-11_Statement.pdf"
     },
     {
       "bookingDate": "2025-11-11",
@@ -208,12 +218,13 @@
       "remittanceInformationUnstructured": "Company Tokyo Ref:DCKJUE",
       "internalTransactionId": "0tlqk6xci882djlm",
       "institution": {
-        "id": "FinTech_EA2MO327",
+        "bankName": "FinTech",
         "softCode": "20-82-22",
         "accountNumber": "********2016",
         "accountType": "Current"
       },
-      "to": "Red Provider"
+      "to": "Red Provider",
+      "source": "FinTech/FinTech_2025-11_Statement.pdf"
     },
     {
       "bookingDate": "2025-11-14",
@@ -227,11 +238,12 @@
       "merchantCategoryCode": "5542",
       "internalTransactionId": "h7x7ftr13p8rv3ut",
       "institution": {
-        "id": "BankB_YVFV3PI9",
+        "bankName": "BankB",
         "accountNumber": "********2417",
         "accountType": "CreditCard"
       },
-      "to": "Slow Cafe"
+      "to": "Slow Cafe",
+      "source": "BankB/BankB_2025-11_Statement.pdf"
     },
     {
       "bookingDate": "2025-11-14",
@@ -245,12 +257,13 @@
       "remittanceInformationUnstructured": "Provider Cambridge Ref:1EJ8R6",
       "internalTransactionId": "y4bezotudzr51zca",
       "institution": {
-        "id": "FinTech_EA2MO327",
+        "bankName": "FinTech",
         "softCode": "20-82-22",
         "accountNumber": "********2016",
         "accountType": "Current"
       },
-      "to": "Fast Station"
+      "to": "Fast Station",
+      "source": "FinTech/FinTech_2025-11_Statement.pdf"
     },
     {
       "bookingDate": "2025-11-17",
@@ -265,12 +278,13 @@
       "remittanceInformationUnstructured": "Shop Paris Ref:03S9NL",
       "internalTransactionId": "6wz02lcmmmigzsi9",
       "institution": {
-        "id": "FinTech_2QIJVOJV",
+        "bankName": "FinTech",
         "softCode": "73-30-43",
         "accountNumber": "********2592",
         "accountType": "Saving"
       },
-      "to": "Sad Depot"
+      "to": "Sad Depot",
+      "source": "FinTech/FinTech_2025-11_Statement.pdf"
     },
     {
       "bookingDate": "2025-11-17",
@@ -284,11 +298,12 @@
       "merchantCategoryCode": "7011",
       "internalTransactionId": "dqwdtgij27s3tzgs",
       "institution": {
-        "id": "BankB_YVFV3PI9",
+        "bankName": "BankB",
         "accountNumber": "********2417",
         "accountType": "CreditCard"
       },
-      "to": "Bright Provider"
+      "to": "Bright Provider",
+      "source": "BankB/BankB_2025-11_Statement.pdf"
     },
     {
       "bookingDate": "2025-11-17",
@@ -302,11 +317,12 @@
       "merchantCategoryCode": "5542",
       "internalTransactionId": "np776xyidu3hase1",
       "institution": {
-        "id": "BankB_YVFV3PI9",
+        "bankName": "BankB",
         "accountNumber": "********2417",
         "accountType": "CreditCard"
       },
-      "to": "Blue Store"
+      "to": "Blue Store",
+      "source": "BankB/BankB_2025-11_Statement.pdf"
     },
     {
       "bookingDate": "2025-11-17",
@@ -320,11 +336,12 @@
       "merchantCategoryCode": "5411",
       "internalTransactionId": "9gdoay0wdyid0r1j",
       "institution": {
-        "id": "BankB_YVFV3PI9",
+        "bankName": "BankB",
         "accountNumber": "********2417",
         "accountType": "CreditCard"
       },
-      "to": "Sad Restaurant"
+      "to": "Sad Restaurant",
+      "source": "BankB/BankB_2025-11_Statement.pdf"
     },
     {
       "bookingDate": "2025-11-17",
@@ -338,11 +355,12 @@
       "merchantCategoryCode": "4121",
       "internalTransactionId": "w64pt9e1bs4uxf6z",
       "institution": {
-        "id": "BankB_YVFV3PI9",
+        "bankName": "BankB",
         "accountNumber": "********2417",
         "accountType": "CreditCard"
       },
-      "to": "Happy Shop"
+      "to": "Happy Shop",
+      "source": "BankB/BankB_2025-11_Statement.pdf"
     },
     {
       "bookingDate": "2025-11-17",
@@ -356,11 +374,12 @@
       "merchantCategoryCode": "4121",
       "internalTransactionId": "sofo4y0kpqbdtqwi",
       "institution": {
-        "id": "BankB_YVFV3PI9",
+        "bankName": "BankB",
         "accountNumber": "********2417",
         "accountType": "CreditCard"
       },
-      "to": "Sad Market"
+      "to": "Sad Market",
+      "source": "BankB/BankB_2025-11_Statement.pdf"
     },
     {
       "bookingDate": "2025-11-17",
@@ -374,11 +393,12 @@
       "merchantCategoryCode": "7538",
       "internalTransactionId": "vybg8sa41ya9bhby",
       "institution": {
-        "id": "BankB_YVFV3PI9",
+        "bankName": "BankB",
         "accountNumber": "********2417",
         "accountType": "CreditCard"
       },
-      "to": "Blue Market"
+      "to": "Blue Market",
+      "source": "BankB/BankB_2025-11_Statement.pdf"
     },
     {
       "bookingDate": "2025-11-17",
@@ -392,11 +412,12 @@
       "merchantCategoryCode": "5462",
       "internalTransactionId": "3k75v31tkah8gg4w",
       "institution": {
-        "id": "BankB_YVFV3PI9",
+        "bankName": "BankB",
         "accountNumber": "********2417",
         "accountType": "CreditCard"
       },
-      "to": "Fast Shop"
+      "to": "Fast Shop",
+      "source": "BankB/BankB_2025-11_Statement.pdf"
     },
     {
       "bookingDate": "2025-11-17",
@@ -411,12 +432,13 @@
       "remittanceInformationUnstructured": "Station Paris Ref:SG3412",
       "internalTransactionId": "gfgkjpcqs28fwmym",
       "institution": {
-        "id": "FinTech_EA2MO327",
+        "bankName": "FinTech",
         "softCode": "20-82-22",
         "accountNumber": "********2016",
         "accountType": "Current"
       },
-      "to": "Fast Service"
+      "to": "Fast Service",
+      "source": "FinTech/FinTech_2025-11_Statement.pdf"
     },
     {
       "bookingDate": "2025-11-17",
@@ -431,12 +453,13 @@
       "remittanceInformationUnstructured": "Service Berlin Ref:1KUYEG",
       "internalTransactionId": "gxecqmqgndhklp77",
       "institution": {
-        "id": "FinTech_EA2MO327",
+        "bankName": "FinTech",
         "softCode": "20-82-22",
         "accountNumber": "********2016",
         "accountType": "Current"
       },
-      "to": "Golden Store"
+      "to": "Golden Store",
+      "source": "FinTech/FinTech_2025-11_Statement.pdf"
     },
     {
       "bookingDate": "2025-11-17",
@@ -451,12 +474,13 @@
       "remittanceInformationUnstructured": "Market New York Ref:LAVHF7",
       "internalTransactionId": "t80tbie758agh4u1",
       "institution": {
-        "id": "FinTech_EA2MO327",
+        "bankName": "FinTech",
         "softCode": "20-82-22",
         "accountNumber": "********2016",
         "accountType": "Current"
       },
-      "to": "Fast Depot"
+      "to": "Fast Depot",
+      "source": "FinTech/FinTech_2025-11_Statement.pdf"
     },
     {
       "bookingDate": "2025-11-18",
@@ -469,11 +493,12 @@
       "remittanceInformationUnstructured": "Store Tokyo Ref:A0U19X",
       "internalTransactionId": "dtw1mng2ya8lg0wq",
       "institution": {
-        "id": "BankB_YVFV3PI9",
+        "bankName": "BankB",
         "accountNumber": "********2417",
         "accountType": "CreditCard"
       },
-      "to": "Bright Station"
+      "to": "Bright Station",
+      "source": "BankB/BankB_2025-11_Statement.pdf"
     },
     {
       "bookingDate": "2025-11-18",
@@ -488,12 +513,13 @@
       "remittanceInformationUnstructured": "Store Paris Ref:Y7FPFB",
       "internalTransactionId": "yx4aeonksxx3ld99",
       "institution": {
-        "id": "FinTech_EA2MO327",
+        "bankName": "FinTech",
         "softCode": "20-82-22",
         "accountNumber": "********2016",
         "accountType": "Current"
       },
-      "to": "Happy Company"
+      "to": "Happy Company",
+      "source": "FinTech/FinTech_2025-11_Statement.pdf"
     },
     {
       "bookingDate": "2025-11-19",
@@ -507,12 +533,13 @@
       "remittanceInformationUnstructured": "Provider New York Ref:RX45EO",
       "internalTransactionId": "ngntz0vmir0tae0o",
       "institution": {
-        "id": "FinTech_EA2MO327",
+        "bankName": "FinTech",
         "softCode": "20-82-22",
         "accountNumber": "********2016",
         "accountType": "Current"
       },
-      "to": "Bright Restaurant"
+      "to": "Bright Restaurant",
+      "source": "FinTech/FinTech_2025-11_Statement.pdf"
     },
     {
       "bookingDate": "2025-11-19",
@@ -526,12 +553,13 @@
       "remittanceInformationUnstructured": "Market Paris Ref:AXIJ0A",
       "internalTransactionId": "t8v7numwist9rsod",
       "institution": {
-        "id": "FinTech_EA2MO327",
+        "bankName": "FinTech",
         "softCode": "20-82-22",
         "accountNumber": "********2016",
         "accountType": "Current"
       },
-      "to": "Sad Market"
+      "to": "Sad Market",
+      "source": "FinTech/FinTech_2025-11_Statement.pdf"
     },
     {
       "bookingDate": "2025-11-19",
@@ -545,12 +573,13 @@
       "remittanceInformationUnstructured": "Depot Paris Ref:879N8W",
       "internalTransactionId": "gjhqz5xvnx8yloos",
       "institution": {
-        "id": "FinTech_EA2MO327",
+        "bankName": "FinTech",
         "softCode": "20-82-22",
         "accountNumber": "********2016",
         "accountType": "Current"
       },
-      "to": "Blue Market"
+      "to": "Blue Market",
+      "source": "FinTech/FinTech_2025-11_Statement.pdf"
     },
     {
       "bookingDate": "2025-11-20",
@@ -564,11 +593,12 @@
       "merchantCategoryCode": "7999",
       "internalTransactionId": "j6nf8aiqj59v1p9q",
       "institution": {
-        "id": "BankB_YVFV3PI9",
+        "bankName": "BankB",
         "accountNumber": "********2417",
         "accountType": "CreditCard"
       },
-      "to": "Silver Company"
+      "to": "Silver Company",
+      "source": "BankB/BankB_2025-11_Statement.pdf"
     },
     {
       "bookingDate": "2025-11-20",
@@ -582,11 +612,12 @@
       "merchantCategoryCode": "5072",
       "internalTransactionId": "8hhor8cxgjhgyksy",
       "institution": {
-        "id": "BankB_YVFV3PI9",
+        "bankName": "BankB",
         "accountNumber": "********2417",
         "accountType": "CreditCard"
       },
-      "to": "Golden Company"
+      "to": "Golden Company",
+      "source": "BankB/BankB_2025-11_Statement.pdf"
     },
     {
       "bookingDate": "2025-11-21",
@@ -600,11 +631,12 @@
       "merchantCategoryCode": "5251",
       "internalTransactionId": "1xapluke90i6hpxv",
       "institution": {
-        "id": "BankB_YVFV3PI9",
+        "bankName": "BankB",
         "accountNumber": "********2417",
         "accountType": "CreditCard"
       },
-      "to": "Golden Company"
+      "to": "Golden Company",
+      "source": "BankB/BankB_2025-11_Statement.pdf"
     },
     {
       "bookingDate": "2025-11-24",
@@ -618,11 +650,12 @@
       "merchantCategoryCode": "5541",
       "internalTransactionId": "xwz2dhlj7clajpby",
       "institution": {
-        "id": "BankB_YVFV3PI9",
+        "bankName": "BankB",
         "accountNumber": "********2417",
         "accountType": "CreditCard"
       },
-      "to": "Silver Store"
+      "to": "Silver Store",
+      "source": "BankB/BankB_2025-11_Statement.pdf"
     },
     {
       "bookingDate": "2025-11-24",
@@ -636,11 +669,12 @@
       "merchantCategoryCode": "4814",
       "internalTransactionId": "jxkkknial5tjnhoo",
       "institution": {
-        "id": "BankB_YVFV3PI9",
+        "bankName": "BankB",
         "accountNumber": "********2417",
         "accountType": "CreditCard"
       },
-      "to": "Blue Store"
+      "to": "Blue Store",
+      "source": "BankB/BankB_2025-11_Statement.pdf"
     },
     {
       "bookingDate": "2025-11-25",
@@ -655,12 +689,13 @@
       "remittanceInformationUnstructured": "Store Cambridge Ref:TED613",
       "internalTransactionId": "wvcnttgszfj6q14i",
       "institution": {
-        "id": "FinTech_2QIJVOJV",
+        "bankName": "FinTech",
         "softCode": "73-30-43",
         "accountNumber": "********2592",
         "accountType": "Saving"
       },
-      "to": "Happy Depot"
+      "to": "Happy Depot",
+      "source": "FinTech/FinTech_2025-11_Statement.pdf"
     },
     {
       "bookingDate": "2025-11-25",
@@ -675,12 +710,13 @@
       "remittanceInformationUnstructured": "Shop Paris Ref:V06MNM",
       "internalTransactionId": "w97gielz3xlpi2nn",
       "institution": {
-        "id": "FinTech_2QIJVOJV",
+        "bankName": "FinTech",
         "softCode": "73-30-43",
         "accountNumber": "********2592",
         "accountType": "Saving"
       },
-      "to": "Silver Depot"
+      "to": "Silver Depot",
+      "source": "FinTech/FinTech_2025-11_Statement.pdf"
     },
     {
       "bookingDate": "2025-11-25",
@@ -693,11 +729,12 @@
       "remittanceInformationUnstructured": "Depot Oxford Ref:M6OKJD",
       "internalTransactionId": "poe2hdhtg56lk3l8",
       "institution": {
-        "id": "BankB_YVFV3PI9",
+        "bankName": "BankB",
         "accountNumber": "********2417",
         "accountType": "CreditCard"
       },
-      "to": "Red Shop"
+      "to": "Red Shop",
+      "source": "BankB/BankB_2025-11_Statement.pdf"
     },
     {
       "bookingDate": "2025-11-25",
@@ -712,12 +749,13 @@
       "remittanceInformationUnstructured": "Store New York Ref:5WPRFT",
       "internalTransactionId": "4pzgo3kxlrx8zldu",
       "institution": {
-        "id": "FinTech_EA2MO327",
+        "bankName": "FinTech",
         "softCode": "20-82-22",
         "accountNumber": "********2016",
         "accountType": "Current"
       },
-      "to": "Dark Station"
+      "to": "Dark Station",
+      "source": "FinTech/FinTech_2025-11_Statement.pdf"
     },
     {
       "bookingDate": "2025-11-25",
@@ -732,12 +770,13 @@
       "remittanceInformationUnstructured": "Restaurant Tokyo Ref:TKKFIR",
       "internalTransactionId": "r5q9r4agqqggal2j",
       "institution": {
-        "id": "FinTech_EA2MO327",
+        "bankName": "FinTech",
         "softCode": "20-82-22",
         "accountNumber": "********2016",
         "accountType": "Current"
       },
-      "to": "Happy Restaurant"
+      "to": "Happy Restaurant",
+      "source": "FinTech/FinTech_2025-11_Statement.pdf"
     },
     {
       "bookingDate": "2025-11-25",
@@ -751,12 +790,13 @@
       "remittanceInformationUnstructured": "Restaurant Tokyo Ref:D2XHVN",
       "internalTransactionId": "do3y5fu38ajlkh73",
       "institution": {
-        "id": "FinTech_EA2MO327",
+        "bankName": "FinTech",
         "softCode": "20-82-22",
         "accountNumber": "********2016",
         "accountType": "Current"
       },
-      "to": "Bright Market"
+      "to": "Bright Market",
+      "source": "FinTech/FinTech_2025-11_Statement.pdf"
     },
     {
       "bookingDate": "2025-11-27",
@@ -770,11 +810,12 @@
       "merchantCategoryCode": "7999",
       "internalTransactionId": "oc7d5mcdhkwrj8gz",
       "institution": {
-        "id": "BankB_YVFV3PI9",
+        "bankName": "BankB",
         "accountNumber": "********2417",
         "accountType": "CreditCard"
       },
-      "to": "Slow Shop"
+      "to": "Slow Shop",
+      "source": "BankB/BankB_2025-11_Statement.pdf"
     },
     {
       "bookingDate": "2025-11-27",
@@ -789,12 +830,13 @@
       "remittanceInformationUnstructured": "Cafe Berlin Ref:XUK0AK",
       "internalTransactionId": "2utctrjjccf1ogbp",
       "institution": {
-        "id": "FinTech_EA2MO327",
+        "bankName": "FinTech",
         "softCode": "20-82-22",
         "accountNumber": "********2016",
         "accountType": "Current"
       },
-      "to": "Fast Provider"
+      "to": "Fast Provider",
+      "source": "FinTech/FinTech_2025-11_Statement.pdf"
     },
     {
       "bookingDate": "2025-11-28",
@@ -809,12 +851,13 @@
       "remittanceInformationUnstructured": "Cafe Paris Ref:0ZNE4O",
       "internalTransactionId": "gbvyx3ox6t0gt2q4",
       "institution": {
-        "id": "FinTech_2QIJVOJV",
+        "bankName": "FinTech",
         "softCode": "73-30-43",
         "accountNumber": "********2592",
         "accountType": "Saving"
       },
-      "to": "Red Station"
+      "to": "Red Station",
+      "source": "FinTech/FinTech_2025-11_Statement.pdf"
     },
     {
       "bookingDate": "2025-11-28",
@@ -829,12 +872,13 @@
       "remittanceInformationUnstructured": "Provider Berlin Ref:9CG5W6",
       "internalTransactionId": "r8wuxoduvkhom4cg",
       "institution": {
-        "id": "FinTech_EA2MO327",
+        "bankName": "FinTech",
         "softCode": "20-82-22",
         "accountNumber": "********2016",
         "accountType": "Current"
       },
-      "to": "Bright Station"
+      "to": "Bright Station",
+      "source": "FinTech/FinTech_2025-11_Statement.pdf"
     },
     {
       "bookingDate": "2025-11-28",
@@ -848,12 +892,13 @@
       "remittanceInformationUnstructured": "Market Cambridge Ref:L85X32",
       "internalTransactionId": "h97yntiqefmrxbpq",
       "institution": {
-        "id": "FinTech_EA2MO327",
+        "bankName": "FinTech",
         "softCode": "20-82-22",
         "accountNumber": "********2016",
         "accountType": "Current"
       },
-      "to": "Fast Provider"
+      "to": "Fast Provider",
+      "source": "FinTech/FinTech_2025-11_Statement.pdf"
     },
     {
       "bookingDate": "2025-12-01",
@@ -867,12 +912,13 @@
       "remittanceInformationUnstructured": "Store Cambridge Ref:1N4VNC",
       "internalTransactionId": "brld28zoigog79gn",
       "institution": {
-        "id": "FinTech_2QIJVOJV",
+        "bankName": "FinTech",
         "softCode": "73-30-43",
         "accountNumber": "********2592",
         "accountType": "Saving"
       },
-      "to": "Green Cafe"
+      "to": "Green Cafe",
+      "source": "FinTech/FinTech_2025-12_Statement.pdf"
     }
   ]
 }

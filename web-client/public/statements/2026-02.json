@@ -52,12 +52,13 @@
       "remittanceInformationUnstructured": "February Salary",
       "internalTransactionId": "txn_2026_02_01",
       "institution": {
-        "id": "HSBC_001",
+        "bankName": "HSBC",
+        "softCode": "40-05-15",
         "accountNumber": "12345678",
-        "accountType": "Current",
-        "softCode": "40-05-15"
+        "accountType": "Current"
       },
-      "to": "February Salary"
+      "to": "February Salary",
+      "source": "HSBC/HSBC_2026-02_Statement.pdf"
     },
     {
       "bookingDate": "2026-02-02",
@@ -71,12 +72,13 @@
       "merchantCategoryCode": "6513",
       "internalTransactionId": "txn_2026_02_02",
       "institution": {
-        "id": "Barclays_001",
+        "bankName": "Barclays",
+        "softCode": "20-00-00",
         "accountNumber": "23456789",
-        "accountType": "Personal",
-        "softCode": "20-00-00"
+        "accountType": "Personal"
       },
-      "to": "Prime Lettings"
+      "to": "Prime Lettings",
+      "source": "Barclays/Barclays_2026-02_Statement.pdf"
     },
     {
       "bookingDate": "2026-02-06",
@@ -90,11 +92,12 @@
       "merchantCategoryCode": "5411",
       "internalTransactionId": "txn_2026_02_03",
       "institution": {
-        "id": "AMEX_001",
+        "bankName": "AMEX",
         "accountNumber": "3001",
         "accountType": "Credit Card"
       },
-      "to": "Waitrose & Partners"
+      "to": "Waitrose & Partners",
+      "source": "AMEX/AMEX_2026-02_Statement.pdf"
     },
     {
       "bookingDate": "2026-02-14",
@@ -108,11 +111,12 @@
       "merchantCategoryCode": "5812",
       "internalTransactionId": "txn_2026_02_04",
       "institution": {
-        "id": "AMEX_001",
+        "bankName": "AMEX",
         "accountNumber": "3001",
         "accountType": "Credit Card"
       },
-      "to": "Dishoom London"
+      "to": "Dishoom London",
+      "source": "AMEX/AMEX_2026-02_Statement.pdf"
     },
     {
       "bookingDate": "2026-02-19",
@@ -126,12 +130,13 @@
       "merchantCategoryCode": "4111",
       "internalTransactionId": "txn_2026_02_05",
       "institution": {
-        "id": "Chase_001",
+        "bankName": "Chase",
+        "softCode": "60-84-56",
         "accountNumber": "87654321",
-        "accountType": "Current",
-        "softCode": "60-84-56"
+        "accountType": "Current"
       },
-      "to": "Transport for London"
+      "to": "Transport for London",
+      "source": "Chase/Chase_2026-02_Statement.pdf"
     }
   ]
 }

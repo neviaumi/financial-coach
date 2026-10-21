@@ -10,7 +10,7 @@ export type Balance = {
 };
 
 export type Institution = {
-  id: string;
+  bankName: string;
   accountNumber: string;
   accountType: string;
   softCode?: string;
@@ -27,6 +27,7 @@ export type Transaction = {
   merchantCategoryCode?: string;
   internalTransactionId: string;
   institution: Institution;
+  source: string;
   to?: string;
 };
 

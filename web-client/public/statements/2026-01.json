@@ -25,12 +25,13 @@
       "remittanceInformationUnstructured": "January Salary",
       "internalTransactionId": "txn_2026_01_01",
       "institution": {
-        "id": "Monzo_001",
+        "bankName": "Monzo",
+        "softCode": "04-00-04",
         "accountNumber": "12345678",
-        "accountType": "Personal",
-        "softCode": "04-00-04"
+        "accountType": "Personal"
       },
-      "to": "David"
+      "to": "David",
+      "source": "Monzo/Monzo_2026-01_Statement.pdf"
     },
     {
       "bookingDate": "2026-01-02",
@@ -43,12 +44,13 @@
       "remittanceInformationUnstructured": "Rent January",
       "internalTransactionId": "txn_2026_01_02",
       "institution": {
-        "id": "Monzo_001",
+        "bankName": "Monzo",
+        "softCode": "04-00-04",
         "accountNumber": "12345678",
-        "accountType": "Personal",
-        "softCode": "04-00-04"
+        "accountType": "Personal"
       },
-      "to": "Landlord"
+      "to": "Landlord",
+      "source": "Monzo/Monzo_2026-01_Statement.pdf"
     },
     {
       "bookingDate": "2026-01-05",
@@ -62,12 +64,13 @@
       "merchantCategoryCode": "5411",
       "internalTransactionId": "txn_2026_01_03",
       "institution": {
-        "id": "Revolut_001",
+        "bankName": "Revolut",
+        "softCode": "12-34-56",
         "accountNumber": "87654321",
-        "accountType": "Current",
-        "softCode": "12-34-56"
+        "accountType": "Current"
       },
-      "to": "Tesco"
+      "to": "Tesco",
+      "source": "Revolut/Revolut_2026-01_Statement.pdf"
     },
     {
       "bookingDate": "2026-01-15",
@@ -80,12 +83,13 @@
       "remittanceInformationUnstructured": "Books",
       "internalTransactionId": "txn_2026_01_04",
       "institution": {
-        "id": "Revolut_001",
+        "bankName": "Revolut",
+        "softCode": "12-34-56",
         "accountNumber": "87654321",
-        "accountType": "Current",
-        "softCode": "12-34-56"
+        "accountType": "Current"
       },
-      "to": "Amazon"
+      "to": "Amazon",
+      "source": "Revolut/Revolut_2026-01_Statement.pdf"
     }
   ]
 }
